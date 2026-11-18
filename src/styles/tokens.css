@@ -1,0 +1,169 @@
+/* ============================================================
+   Herbario · cuaderno de campo
+   Paleta: papel otoñal, arce, olivo, ocre y ciruela.
+   ============================================================ */
+
+:root {
+  /* papel */
+  --paper: #f5e8d3;
+  --paper-deep: #ecd8bc;
+  --panel: #fdf6e8;
+  --panel-2: #f3e3cc;
+
+  /* tinta */
+  --ink: #2b1d14;
+  --ink-soft: #4c382a;
+  --muted: #7b6351;
+
+  /* líneas */
+  --line: #e3cfb2;
+  --line-strong: #cbae8b;
+
+  /* acentos de otoño */
+  --moss: #a9472a;
+  --moss-dark: #7f2f1b;
+  --moss-mid: #b04a2a;
+  --moss-soft: #f8dfd0;
+  --fern: #7d8b4a;
+
+  --olive: #5e6b34;
+  --olive-dark: #465024;
+  --olive-soft: #e9e9cf;
+
+  --terracotta: #8f3b1f;
+  --terracotta-soft: #f8e0d1;
+  --ochre: #8a5a12;
+  --ochre-soft: #f8e7c7;
+  --plum: #7b3a4c;
+  --plum-soft: #f2dee3;
+  --teal: #7b3a4c;
+  --teal-soft: #f2dee3;
+  --bark: #6b4a2f;
+  --bark-soft: #efe0cc;
+  --blossom: #a34a5f;
+  --danger: #8f2f24;
+  --danger-soft: #f8dfd9;
+  --panel-bright: #fffaee;
+  --panel-warm: #fff8ea;
+  --muted-soft: #9a826c;
+  --honey: #b3761d;
+  --honey-mid: #96671d;
+  --honey-soft: #e0b06a;
+  --ochre-dark: #6d4b13;
+  --sienna: #a9522f;
+  --sienna-dark: #7c341a;
+  --plum-dark: #5e2b38;
+  --danger-dark: #6d2c22;
+  --sage-soft: #e2ece0;
+
+  /* formas */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 1px 2px rgba(43, 29, 20, 0.07), 0 2px 8px -4px rgba(43, 29, 20, 0.18);
+  --shadow: 0 14px 40px -24px rgba(43, 29, 20, 0.5), 0 2px 8px -4px rgba(43, 29, 20, 0.15);
+  --shadow-lg: 0 32px 80px -36px rgba(43, 29, 20, 0.6), 0 4px 14px -6px rgba(43, 29, 20, 0.2);
+  --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(1100px 700px at 95% -12%, rgba(179, 118, 29, 0.17), transparent 58%),
+    radial-gradient(950px 650px at -8% 6%, rgba(169, 71, 42, 0.14), transparent 56%),
+    radial-gradient(800px 560px at 62% 112%, rgba(123, 58, 76, 0.08), transparent 62%),
+    linear-gradient(165deg, #fcf2df 0%, var(--paper) 46%, #eed9bd 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image: radial-gradient(rgba(107, 74, 47, 0.1) 0.7px, transparent 0.8px);
+  background-size: 18px 18px;
+}
+
+::selection { background: var(--moss-mid); color: #fdfbf4; }
+
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+svg { flex: none; }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+*::-webkit-scrollbar { width: 9px; height: 9px; }
+*::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 99px;
+  background: var(--line-strong);
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--muted); background-clip: content-box; }
+
+kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1;
+  padding: 3px 5px;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  color: var(--muted);
+  background: var(--panel);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--moss-mid);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pulse {
+  50% { opacity: 0.25; transform: scale(0.8); }
+}
+
