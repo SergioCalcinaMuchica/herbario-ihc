@@ -119,3 +119,15 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** El texto de ejemplo ("Describe tu espacio, luz, riego o si hay mascotas…") era tan pálido que su contraste con el fondo era de 3,4 a 1, por debajo del 4,5 a 1 recomendado. Ese texto le indica al usuario qué escribir, así que debe leerse bien.
 
 **Cambio.** Se oscureció el color de los textos de ejemplo (de #9a826c a #836a56). Ahora el contraste es de 4,7 a 1 y el texto sigue viéndose más claro que lo que escribe el usuario.
+
+## Capítulo 5 · Our Peripheral Vision is Poor
+
+### Regla 5.6
+
+**Regla.** No usar el color rojo para información que no sea de error, a menos que existan convenciones específicas que lo dicten.
+
+**Pantalla.** Franja "Asumí algo que no me dijiste", bloque "Tu mensaje" y aviso de mascotas debajo de las plantas candidatas.
+
+**Problema.** Los tres usaban rojo o rosado rojizo (borde, ícono o etiqueta), aunque ninguno es un error. La franja hace una pregunta, "Tu mensaje" repite lo que escribió el usuario y el aviso es una precaución. Con tanto rojo, el color dejaba de servir para señalar lo que sí es grave, como una planta tóxica.
+
+**Cambio.** La franja de supuestos y el aviso de mascotas pasaron a ámbar, que llama la atención sin sugerir un error. "Tu mensaje" pasó a un tono café neutro. El rojo queda para los riesgos y los errores.

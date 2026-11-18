@@ -237,13 +237,13 @@ button.brief-chip:hover { border-color: var(--moss-mid); background: var(--moss-
 .safety-note {
   margin-top: 10px;
   padding: 9px 12px;
-  border: 1px solid color-mix(in srgb, var(--sienna) 35%, transparent);
-  border-left: 3px solid var(--terracotta);
+  border: 1px solid color-mix(in srgb, var(--ochre) 35%, transparent);
+  border-left: 3px solid var(--ochre);
   border-radius: 9px;
-  background: var(--terracotta-soft);
+  background: var(--ochre-soft);
   font-size: 12px;
   line-height: 1.45;
-  color: var(--sienna-dark);
+  color: var(--ochre-dark);
 }
 
 .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }

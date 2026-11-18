@@ -212,9 +212,9 @@
   align-items: start;
   gap: 8px 9px;
   padding: 9px 11px;
-  border: 1px dashed color-mix(in srgb, var(--sienna) 45%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--ochre) 45%, transparent);
   border-radius: 10px;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--terracotta-soft) 75%, transparent), var(--terracotta-soft));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--ochre-soft) 75%, transparent), var(--ochre-soft));
   font-size: 12px;
 }
 .assumptions-bar .q {
@@ -223,7 +223,7 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: var(--terracotta);
+  background: var(--ochre);
   color: var(--panel-warm);
   font-weight: 700;
   font-size: 12px;
@@ -231,9 +231,9 @@
   margin-top: 1px;
 }
 .assumptions-bar .bar-text { min-width: 0; display: grid; gap: 1px; }
-.assumptions-bar .bar-text strong { font-size: 11px; letter-spacing: 0.02em; color: var(--sienna-dark); }
+.assumptions-bar .bar-text strong { font-size: 11px; letter-spacing: 0.02em; color: var(--ochre-dark); }
 .assumptions-bar .first { color: var(--ink-soft); font-weight: 600; line-height: 1.35; }
-.assumptions-bar .why { color: var(--sienna-dark); font-size: 10.5px; line-height: 1.35; opacity: 0.85; }
+.assumptions-bar .why { color: var(--ochre-dark); font-size: 10.5px; line-height: 1.35; opacity: 0.85; }
 .assumptions-bar .bar-actions { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 .assumptions-bar .bar-edit { display: flex; gap: 4px; margin-top: 5px; }
 .assumptions-bar .bar-edit input {
