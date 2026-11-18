@@ -22,7 +22,7 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 
 **Problema.** Los tres botones de la cabecera eran solo íconos, sin texto. El de fijar era el más confuso, porque cuando la respuesta ya estaba fijada mostraba un alfiler tachado, y se podía entender que no estaba fijada.
 
-**Cambio.** Cada botón muestra ahora el ícono y un texto que dice lo que hace. Los textos son Fijar o Quitar de fijadas, Otra versión y Descargar.
+**Cambio.** Cada botón muestra ahora el ícono y un texto. El botón de fijar dice Fijado o No fijado, y su alfiler se ve relleno cuando la respuesta está fijada y solo con contorno cuando no lo está. Los otros dos dicen Otra versión y Descargar.
 
 ### Regla 1.1
 

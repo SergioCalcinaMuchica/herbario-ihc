@@ -18,7 +18,6 @@
     LoaderCircle,
     MessagesSquare,
     Pin,
-    PinOff,
     RefreshCw,
     Ruler,
     ScanLine,
@@ -270,8 +269,8 @@
         </p>
       </div>
       <div class="head-actions">
-        <button class="btn ghost" onclick={() => togglePin(node)}>
-          {#if node.pinned}<PinOff size={15} /> Quitar de fijadas{:else}<Pin size={15} /> Fijar{/if}
+        <button class="btn ghost" aria-pressed={node.pinned} onclick={() => togglePin(node)}>
+          <Pin size={15} fill={node.pinned ? 'currentColor' : 'none'} /> {node.pinned ? 'Fijado' : 'No fijado'}
         </button>
         <button class="btn ghost" onclick={() => regenerate(node)}><RefreshCw size={15} /> Otra versión</button>
         <button class="btn ghost" onclick={download}><Download size={15} /> Descargar</button>
