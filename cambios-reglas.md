@@ -34,6 +34,16 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 
 **Cambio.** Se quitaron del pie del panel. Historial y Árbol quedan solo en la barra superior, junto a Buscar.
 
+### Regla 1.5 (íconos de los datos de cuidado)
+
+**Regla.** No diseñar pantallas de información ambiguas.
+
+**Pantalla.** Bloque "Datos de cuidado" de la respuesta.
+
+**Problema.** Cuando un dato no tenía un ícono propio, se mostraba una hoja. Por eso Riego, Mascotas y Espacio, que son datos distintos, tenían el mismo dibujo, y el ícono no ayudaba a diferenciarlos. Lo mismo pasaba con Drenaje, Abono, Temperatura y Porte.
+
+**Cambio.** Cada dato tiene ahora un ícono que corresponde a lo que significa. Riego y Agua muestran una gota, Mascotas una huella, Espacio, Tamaño y Porte una regla, Abono un frasco, Temperatura un termómetro y Drenaje una flecha hacia abajo. La hoja queda solo para los datos que no tienen un ícono propio.
+
 ## Capítulo 2 · Our Vision is Optimized to See Structure
 
 ### Regla 2.5

@@ -1,5 +1,6 @@
 <script lang="ts">
   import {
+    ArrowDownToLine,
     ArrowRight,
     ArrowUpRight,
     CalendarDays,
@@ -17,6 +18,7 @@
     Leaf,
     LoaderCircle,
     MessagesSquare,
+    PawPrint,
     Pin,
     RefreshCw,
     Ruler,
@@ -25,6 +27,7 @@
     Sprout,
     Square,
     Sun,
+    Thermometer,
     Undo2,
     UserRound,
     Wind,
@@ -113,15 +116,18 @@
 
   function paramIcon(label: string) {
     const key = label.toLowerCase();
-    if (key.startsWith('luz')) return Sun;
-    if (key.startsWith('agua')) return Droplets;
+    if (key.startsWith('luz') || key.startsWith('sol')) return Sun;
+    if (key.startsWith('agua') || key.startsWith('riego')) return Droplets;
+    if (key.startsWith('drenaje')) return ArrowDownToLine;
+    if (key.startsWith('mascota')) return PawPrint;
+    if (key.startsWith('temperatura')) return Thermometer;
     if (key.startsWith('humedad')) return Wind;
     if (key.startsWith('sustrato')) return Layers;
     if (key.startsWith('época') || key.startsWith('epoca')) return CalendarDays;
     if (key.startsWith('corte')) return ScanLine;
     if (key.startsWith('retiro') || key.startsWith('frecuencia')) return RefreshCw;
-    if (key.startsWith('npk')) return FlaskConical;
-    if (key.startsWith('tamaño') || key.startsWith('tamano')) return Ruler;
+    if (key.startsWith('npk') || key.startsWith('abono')) return FlaskConical;
+    if (key.startsWith('tamaño') || key.startsWith('tamano') || key.startsWith('espacio') || key.startsWith('porte')) return Ruler;
     if (key.startsWith('dificultad')) return Gauge;
     return Leaf;
   }
