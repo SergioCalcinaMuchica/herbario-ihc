@@ -346,12 +346,8 @@
 .door:nth-child(3) { --door-tone: var(--ochre); --door-soft: var(--ochre-soft); }
 .door:nth-child(4) { --door-tone: var(--plum); --door-soft: var(--plum-soft); }
 
-/* parámetros: una ficha, un acento */
-.param { border-left: 3px solid var(--line-strong); }
-.param:nth-child(4n + 1) { border-left-color: var(--olive); background: linear-gradient(100deg, var(--olive-soft), var(--panel) 64%); }
-.param:nth-child(4n + 2) { border-left-color: var(--ochre); background: linear-gradient(100deg, var(--ochre-soft), var(--panel) 64%); }
-.param:nth-child(4n + 3) { border-left-color: var(--plum); background: linear-gradient(100deg, var(--plum-soft), var(--panel) 64%); }
-.param:nth-child(4n + 4) { border-left-color: var(--moss); background: linear-gradient(100deg, var(--moss-soft), var(--panel) 64%); }
+/* parámetros: todas las fichas con el mismo estilo */
+.param { border-left: 3px solid var(--olive); }
 
 /* candidatas */
 .cand {

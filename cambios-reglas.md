@@ -45,3 +45,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los datos de cada planta estaban en etiquetas pequeñas con un ícono y sin nombre, que se acomodaban en filas de distinto largo. Para comparar las tres plantas había que leer cada tarjeta por separado.
 
 **Cambio.** Cada tarjeta tiene ahora una tabla corta con las mismas filas y en el mismo orden (Luz, Riego, Tamaño y Mascotas). Las tablas quedan a la misma altura en las tres tarjetas, así que cada dato se compara de un vistazo.
+
+### Regla 2.2
+
+**Regla.** Aplicar formatos visuales idénticos (Similitud), como texto en negrita, colores o formas específicas, para que los usuarios perciban rápidamente elementos relacionados como un grupo distinto.
+
+**Pantalla.** Bloque "Datos de cuidado" de la respuesta.
+
+**Problema.** Los cuatro datos (Luz, Riego, Mascotas y Espacio) son del mismo tipo, pero cada uno tenía un borde y un fondo de otro color. Eso hacía pensar que eran cosas de distinta clase o que alguno era más importante.
+
+**Cambio.** Los cuatro datos tienen ahora el mismo borde y el mismo fondo, así que se leen como un solo grupo.
