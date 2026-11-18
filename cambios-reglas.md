@@ -23,3 +23,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los tres botones de la cabecera eran solo íconos, sin texto. El de fijar era el más confuso, porque cuando la respuesta ya estaba fijada mostraba un alfiler tachado, y se podía entender que no estaba fijada.
 
 **Cambio.** Cada botón muestra ahora el ícono y un texto que dice lo que hace. Los textos son Fijar o Quitar de fijadas, Otra versión y Descargar.
+
+### Regla 1.1
+
+**Regla.** Mantener la consistencia ubicando controles e información en las mismas posiciones a través de las páginas, utilizando los mismos colores, fuentes y sombreados.
+
+**Pantalla.** Barra superior y pie del panel "Tu jardín".
+
+**Problema.** Los botones Historial y Árbol aparecían en dos lugares, en la barra superior y en el pie del panel izquierdo, con distinto tamaño y estilo. Con dos copias distintas, el usuario podía pensar que hacían cosas diferentes o no saber dónde buscarlos.
+
+**Cambio.** Se quitaron del pie del panel. Historial y Árbol quedan solo en la barra superior, junto a Buscar.

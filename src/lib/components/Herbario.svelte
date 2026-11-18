@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Clock3, GitBranch, Leaf, MessagesSquare, Pin, Plus, ScrollText, Search } from '@lucide/svelte';
+  import { Clock3, Leaf, MessagesSquare, Pin, Plus, Search } from '@lucide/svelte';
   import type { KnowledgeNode } from '#lib/types';
   import {
     activeNode,
@@ -7,8 +7,6 @@
     app,
     lineCount,
     newConsultation,
-    openLedger,
-    openMap,
     openNode,
     switchSession
   } from '#lib/store.svelte';
@@ -136,10 +134,6 @@
 
   <footer class="mem-foot">
     <span><MessagesSquare size={13} /> {nodes.length} respuestas · {totalPending} supuestos pendientes</span>
-    <div>
-      <button class="link" onclick={openMap}><GitBranch size={13} /> Árbol</button>
-      <button class="link" onclick={() => openLedger('sesion')}><ScrollText size={13} /> Historial</button>
-    </div>
     <label class="session-select">
       <span class="sr-only">Jardín</span>
       <select value={app.sessionId} onchange={(e: Event) => switchSession((e.currentTarget as HTMLSelectElement).value)}>
