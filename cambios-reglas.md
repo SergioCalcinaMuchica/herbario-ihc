@@ -151,3 +151,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Al quitar un dato aparecía la ventana de confirmación del navegador, que bloquea toda la página y aparece lejos del botón, por una acción que no es grave.
 
 **Cambio.** La confirmación aparece dentro del mismo dato, en el lugar del botón. Pregunta "¿Quitar este dato?" y ofrece "Sí, quitar" y "No".
+
+### Regla 5.8
+
+**Regla.** No usar movimientos o parpadeos prolongados en la pantalla, ya que se vuelven una molestia consciente.
+
+**Pantalla.** Vista Árbol.
+
+**Problema.** El punto que marca la respuesta actual parpadeaba sin parar mientras el Árbol estaba abierto. El movimiento atraía la mirada una y otra vez mientras el usuario leía los títulos, sin avisar nada nuevo.
+
+**Cambio.** El punto queda fijo. La respuesta actual se sigue reconociendo por el punto y por su título en negrita y en verde.

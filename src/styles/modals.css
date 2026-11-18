@@ -607,7 +607,6 @@
   border-radius: 50%;
   background: var(--olive);
   box-shadow: 0 0 0 3px var(--olive-soft);
-  animation: pulse 1.6s infinite;
   vertical-align: 1px;
 }
 
