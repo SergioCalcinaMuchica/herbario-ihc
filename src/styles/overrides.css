@@ -338,7 +338,7 @@
 .card-head .voice.from-user { background: var(--olive-soft); color: var(--olive-dark); }
 .voice.user { border-left-color: var(--olive); }
 .voice.user h3 svg { color: var(--olive); }
-.pet.segura { background: var(--olive-soft); color: var(--olive-dark); }
+.pet.segura { color: var(--olive-dark); }
 
 /* puertas: cuatro estaciones */
 .door:nth-child(1) { --door-tone: var(--moss); --door-soft: var(--moss-soft); }

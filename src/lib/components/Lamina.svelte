@@ -138,9 +138,9 @@
   }
 
   const petLabel: Record<Candidate['pets'], string> = {
-    segura: 'Segura con mascotas',
-    precaucion: 'Precaución con mascotas',
-    toxica: 'Tóxica para mascotas'
+    segura: 'Segura',
+    precaucion: 'Con precaución',
+    toxica: 'Tóxica'
   };
 
   const statusLabels: Record<KnowledgeNode['status'], string> = {
@@ -360,12 +360,12 @@
               <p class="scientific">{c.scientific}</p>
               <p class="fit">{c.fit}</p>
               <p class="needs">{c.needs}</p>
-              <div class="cand-meta">
-                <span><Sun size={10} /> {c.light}</span>
-                <span><Droplets size={10} /> {c.water}</span>
-                <span><Ruler size={10} /> {c.size}</span>
-              </div>
-              <p class="pet {c.pets}">{petLabel[c.pets]}</p>
+              <dl class="cand-table">
+                <div><dt>Luz</dt><dd>{c.light}</dd></div>
+                <div><dt>Riego</dt><dd>{c.water}</dd></div>
+                <div><dt>Tamaño</dt><dd>{c.size}</dd></div>
+                <div><dt>Mascotas</dt><dd class="pet {c.pets}">{petLabel[c.pets]}</dd></div>
+              </dl>
               <button class="btn tiny primary" onclick={() => chooseCandidate(c)}>Elegir esta <ArrowRight size={13} /></button>
             </div>
           </article>

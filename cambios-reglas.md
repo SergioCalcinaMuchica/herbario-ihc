@@ -33,3 +33,15 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los botones Historial y Árbol aparecían en dos lugares, en la barra superior y en el pie del panel izquierdo, con distinto tamaño y estilo. Con dos copias distintas, el usuario podía pensar que hacían cosas diferentes o no saber dónde buscarlos.
 
 **Cambio.** Se quitaron del pie del panel. Historial y Árbol quedan solo en la barra superior, junto a Buscar.
+
+## Capítulo 2 · Our Vision is Optimized to See Structure
+
+### Regla 2.5
+
+**Regla.** Presentar la información compleja utilizando estructuras simétricas (Simetría/Prägnanz), como tablas, para reducir la complejidad visual de la escena, facilitar el escaneo de datos y ayudar al cerebro a encontrar el orden.
+
+**Pantalla.** Tarjetas de plantas candidatas en la respuesta de escoger una planta.
+
+**Problema.** Los datos de cada planta estaban en etiquetas pequeñas con un ícono y sin nombre, que se acomodaban en filas de distinto largo. Para comparar las tres plantas había que leer cada tarjeta por separado.
+
+**Cambio.** Cada tarjeta tiene ahora una tabla corta con las mismas filas y en el mismo orden (Luz, Riego, Tamaño y Mascotas). Las tablas quedan a la misma altura en las tres tarjetas, así que cada dato se compara de un vistazo.
