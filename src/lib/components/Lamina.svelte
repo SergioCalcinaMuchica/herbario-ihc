@@ -4,6 +4,7 @@
     ArrowRight,
     ArrowUpRight,
     CalendarDays,
+    Check,
     ChevronDown,
     CircleExclamationPoint,
     CirclePause,
@@ -28,6 +29,7 @@
     Square,
     Sun,
     Thermometer,
+    TriangleExclamationPoint,
     Undo2,
     UserRound,
     Wind,
@@ -379,7 +381,7 @@
                 <div><dt>Luz</dt><dd>{c.light}</dd></div>
                 <div><dt>Riego</dt><dd>{c.water}</dd></div>
                 <div><dt>Tamaño</dt><dd>{c.size}</dd></div>
-                <div><dt>Mascotas</dt><dd class="pet {c.pets}">{petLabel[c.pets]}</dd></div>
+                <div><dt>Mascotas</dt><dd class="pet {c.pets}">{#if c.pets === 'segura'}<Check size={13} />{:else if c.pets === 'precaucion'}<CircleExclamationPoint size={13} />{:else}<TriangleExclamationPoint size={13} />{/if} {petLabel[c.pets]}</dd></div>
               </dl>
               <button class="btn tiny primary" onclick={() => chooseCandidate(c)}>Elegir esta <ArrowRight size={13} /></button>
             </div>

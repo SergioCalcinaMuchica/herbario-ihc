@@ -97,3 +97,15 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Al buscar en "Este jardín", cada resultado repetía el nombre del jardín, aunque todos eran del mismo. Además, cada fila tenía una flecha a la derecha que no agregaba información, porque toda la fila ya se podía abrir.
 
 **Cambio.** El nombre del jardín se muestra solo al buscar en "Todos los jardines", que es cuando ayuda a diferenciar los resultados. También se quitó la flecha de cada fila.
+
+## Capítulo 4 · Our Color Vision is Limited
+
+### Regla 4.8
+
+**Regla.** No usar pares de colores que las personas daltónicas no pueden distinguir (rojo oscuro vs. negro, rojo oscuro vs. verde oscuro, azul vs. púrpura, verde claro vs. blanco). Se apoya en la regla 4.3, que pide usar el color junto con otras señales visuales, y en la 4.5, que pide revisar la pantalla con un simulador de daltonismo.
+
+**Pantalla.** Tarjetas de plantas candidatas, fila "Mascotas".
+
+**Problema.** "Segura" se mostraba en verde oscuro y "Tóxica" en rojo oscuro, sin otra señal. En la simulación de deuteranopía, los dos se ven del mismo verde oliva, así que el aviso de que la planta es tóxica para la mascota pierde fuerza.
+
+**Cambio.** Cada valor lleva ahora un ícono con forma distinta. Segura tiene una marca de visto, Con precaución un círculo con signo de exclamación y Tóxica un triángulo de advertencia. La diferencia se nota por la forma aunque no se distinga el color.

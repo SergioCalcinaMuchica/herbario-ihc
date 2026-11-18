@@ -410,6 +410,7 @@
 .cand-table div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 6px; padding: 3px 0; }
 .cand-table dt { color: var(--muted); }
 .cand-table dd { margin: 0; font-weight: 600; color: var(--ink-soft); }
+.cand-table dd.pet { display: flex; align-items: center; gap: 4px; }
 .pet.segura { color: var(--moss-dark); }
 .pet.precaucion { color: var(--ochre); }
 .pet.toxica { color: var(--danger); }
