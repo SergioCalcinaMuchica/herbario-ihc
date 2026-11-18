@@ -55,3 +55,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los cuatro datos (Luz, Riego, Mascotas y Espacio) son del mismo tipo, pero cada uno tenía un borde y un fondo de otro color. Eso hacía pensar que eran cosas de distinta clase o que alguno era más importante.
 
 **Cambio.** Los cuatro datos tienen ahora el mismo borde y el mismo fondo, así que se leen como un solo grupo.
+
+### Regla 2.8
+
+**Regla.** No usar cuadros de agrupación o líneas divisorias innecesarias para separar controles si el espaciado es suficiente.
+
+**Pantalla.** Lista "Qué hacer" de la respuesta.
+
+**Problema.** Cada paso de la lista tenía una línea divisoria debajo, aunque el número en círculo y el espacio entre pasos ya los separaban. Las líneas agregaban ruido visual sin dar información.
+
+**Cambio.** Se quitaron las líneas entre los pasos. Ahora los pasos se separan solo con el espacio y su número.

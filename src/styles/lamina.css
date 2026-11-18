@@ -300,14 +300,12 @@
   grid-template-columns: 26px minmax(0, 1fr);
   gap: 11px;
   align-items: start;
-  padding: 10px 6px;
-  border-bottom: 1px solid var(--line);
+  padding: 8px 6px;
   font-size: 13.5px;
   line-height: 1.5;
   color: var(--ink-soft);
   transition: background 140ms var(--ease), padding 140ms var(--ease);
 }
-.actions li:last-child { border-bottom: 0; }
 .actions li:hover { background: var(--panel-2); padding-left: 10px; }
 .actions .num {
   display: grid;
