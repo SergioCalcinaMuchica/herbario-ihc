@@ -467,6 +467,7 @@
   color: var(--ink-soft);
   animation: rise 160ms var(--ease);
 }
+.section ul.body { display: grid; gap: 4px; padding-left: 34px; }
 
 /* ---------- contexto: tres voces ---------- */
 

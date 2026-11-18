@@ -114,6 +114,15 @@
 
   const doorIcons = [Flower2, ScanLine, Droplets];
 
+  /** Separa un texto con varias ideas (unidas por «;» o por frases) para mostrarlo como lista. */
+  function ideas(text: string) {
+    return text
+      .split(/;\s+|(?<=[^\d]\.)\s+/)
+      .map((part) => part.trim().replace(/\.$/, ''))
+      .filter(Boolean)
+      .map((part) => part[0].toUpperCase() + part.slice(1));
+  }
+
   function paramIcon(label: string) {
     const key = label.toLowerCase();
     if (key.startsWith('luz') || key.startsWith('sol')) return Sun;
@@ -435,7 +444,11 @@
                 <ChevronDown class="chevron" size={15} />
               </span>
             </summary>
-            <p class="body">{s.body}</p>
+            {#if ideas(s.body).length > 1}
+              <ul class="body">{#each ideas(s.body) as item (item)}<li>{item}</li>{/each}</ul>
+            {:else}
+              <p class="body">{s.body}</p>
+            {/if}
           </details>
         {/each}
       </section>

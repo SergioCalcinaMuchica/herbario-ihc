@@ -75,3 +75,15 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Cada paso de la lista tenía una línea divisoria debajo, aunque el número en círculo y el espacio entre pasos ya los separaban. Las líneas agregaban ruido visual sin dar información.
 
 **Cambio.** Se quitaron las líneas entre los pasos. Ahora los pasos se separan solo con el espacio y su número.
+
+## Capítulo 3 · We Seek and Use Visual Structure
+
+### Regla 3.6
+
+**Regla.** No presentar datos o listas como párrafos de texto en prosa sin estructura. Se apoya en la regla 3.1, que pide usar viñetas y listas numeradas para facilitar el escaneo visual.
+
+**Pantalla.** Secciones desplegables "Por qué" y "Qué vigilar" de la respuesta.
+
+**Problema.** Cada sección juntaba varias ideas distintas en un solo párrafo, unidas con punto y coma. Por ejemplo, dos avisos sobre dos plantas distintas se leían como una sola oración.
+
+**Cambio.** Cuando el texto tiene varias ideas, se muestra como una lista con viñetas, una idea por línea. Si tiene una sola idea, sigue como párrafo.
