@@ -6,7 +6,6 @@
     ChevronDown,
     CircleExclamationPoint,
     CirclePause,
-    CircleQuestionMark,
     Cpu,
     Download,
     Droplets,
@@ -26,7 +25,6 @@
     Sparkles,
     Sprout,
     Square,
-    Stethoscope,
     Sun,
     Undo2,
     UserRound,
@@ -93,32 +91,26 @@
 
   const doors = [
     {
-      title: 'Elegir una planta',
+      title: 'Escoger una planta',
       text: 'Dime cómo es tu espacio y qué buscas.',
       goal: 'elegir' as const,
       prompt: 'Quiero elegir una planta para interior. Tengo poca luz y riego poco.'
     },
     {
       title: 'Identificar una planta',
-      text: 'Describe sus hojas, porte y luz para descartar confusiones.',
+      text: 'Cuéntame cómo son sus hojas y su color.',
       goal: 'identificar' as const,
-      prompt: 'Quiero identificar mi planta observando sus hojas y porte.'
+      prompt: 'Quiero saber qué planta tengo. Sus hojas son grandes, verdes y con agujeros.'
     },
     {
-      title: 'Resolver un problema',
-      text: 'Hojas, manchas, riego, plagas…',
-      goal: 'diagnosticar' as const,
-      prompt: 'Mi planta tiene hojas amarillas y el sustrato está húmedo.'
-    },
-    {
-      title: 'No sé qué pedir',
-      text: 'Te pregunto una cosa a la vez.',
-      goal: 'diagnosticar' as const,
-      prompt: 'No sé qué le pasa a mi planta. Ayúdame a averiguarlo.'
+      title: 'Conocer sus cuidados',
+      text: 'Luz, riego, tierra y maceta, y el porqué de cada uno.',
+      goal: 'cuidar' as const,
+      prompt: 'Quiero aprender a cuidar mi planta. ¿Cuánta luz y cuánto riego necesita?'
     }
   ];
 
-  const doorIcons = [Flower2, Stethoscope, ScanLine, CircleQuestionMark];
+  const doorIcons = [Flower2, ScanLine, Droplets];
 
   function paramIcon(label: string) {
     const key = label.toLowerCase();
