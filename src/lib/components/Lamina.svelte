@@ -390,6 +390,7 @@
       </section>
       {#if node.brief?.pets === 'mascotas' || node.candidates.some((c) => c.pets !== 'segura')}
         <p class="safety-note" role="note">
+          <TriangleExclamationPoint size={15} />
           Orientación botánica general: si convives con mascotas que muerden hojas, confirma la toxicidad exacta con un veterinario.
         </p>
       {/if}

@@ -131,3 +131,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los tres usaban rojo o rosado rojizo (borde, ícono o etiqueta), aunque ninguno es un error. La franja hace una pregunta, "Tu mensaje" repite lo que escribió el usuario y el aviso es una precaución. Con tanto rojo, el color dejaba de servir para señalar lo que sí es grave, como una planta tóxica.
 
 **Cambio.** La franja de supuestos y el aviso de mascotas pasaron a ámbar, que llama la atención sin sugerir un error. "Tu mensaje" pasó a un tono café neutro. El rojo queda para los riesgos y los errores.
+
+### Regla 5.3
+
+**Regla.** Utilizar símbolos de error (como ! o X) para mejorar la visibilidad.
+
+**Pantalla.** Aviso de mascotas debajo de las plantas candidatas.
+
+**Problema.** El aviso recomienda confirmar con un veterinario si una planta es tóxica, pero era solo texto, sin ningún símbolo, y se confundía con el resto de la página.
+
+**Cambio.** El aviso lleva delante un triángulo de advertencia, el mismo que acompaña a "Tóxica" en las tarjetas. Así resalta y se relaciona con ese dato.
