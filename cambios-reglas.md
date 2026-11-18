@@ -109,3 +109,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** "Segura" se mostraba en verde oscuro y "Tóxica" en rojo oscuro, sin otra señal. En la simulación de deuteranopía, los dos se ven del mismo verde oliva, así que el aviso de que la planta es tóxica para la mascota pierde fuerza.
 
 **Cambio.** Cada valor lleva ahora un ícono con forma distinta. Segura tiene una marca de visto, Con precaución un círculo con signo de exclamación y Tóxica un triángulo de advertencia. La diferencia se nota por la forma aunque no se distinga el color.
+
+### Regla 4.7
+
+**Regla.** No utilizar diferencias de color muy sutiles o pálidas. Se apoya en la regla 4.2, que pide asegurar un alto contraste.
+
+**Pantalla.** Textos de ejemplo de la barra de escritura y del buscador del panel "Tu jardín".
+
+**Problema.** El texto de ejemplo ("Describe tu espacio, luz, riego o si hay mascotas…") era tan pálido que su contraste con el fondo era de 3,4 a 1, por debajo del 4,5 a 1 recomendado. Ese texto le indica al usuario qué escribir, así que debe leerse bien.
+
+**Cambio.** Se oscureció el color de los textos de ejemplo (de #9a826c a #836a56). Ahora el contraste es de 4,7 a 1 y el texto sigue viéndose más claro que lo que escribe el usuario.
