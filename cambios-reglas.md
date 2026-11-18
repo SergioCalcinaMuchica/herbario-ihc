@@ -141,3 +141,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** El aviso recomienda confirmar con un veterinario si una planta es tóxica, pero era solo texto, sin ningún símbolo, y se confundía con el resto de la página.
 
 **Cambio.** El aviso lleva delante un triángulo de advertencia, el mismo que acompaña a "Tóxica" en las tarjetas. Así resalta y se relaciona con ese dato.
+
+### Regla 5.7
+
+**Regla.** No usar mensajes emergentes modales del sistema a menos que el programa vaya a fallar gravemente o haya riesgo vital.
+
+**Pantalla.** Historial, pestaña Heredado, botón "Quitar" de un dato del usuario.
+
+**Problema.** Al quitar un dato aparecía la ventana de confirmación del navegador, que bloquea toda la página y aparece lejos del botón, por una acción que no es grave.
+
+**Cambio.** La confirmación aparece dentro del mismo dato, en el lugar del botón. Pregunta "¿Quitar este dato?" y ofrece "Sí, quitar" y "No".

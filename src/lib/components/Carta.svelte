@@ -34,6 +34,7 @@
 
   let editing = $state<false | 'edit' | 'correct'>(false);
   let draft = $state('');
+  let confirmingRemove = $state(false);
 
   const labels: Record<Card['type'], string> = {
     hecho: 'Dato',
@@ -128,12 +129,13 @@
     <div class="actions">
       {#if card.type === 'hecho'}
         <button class="btn tiny" onclick={() => begin('edit')}><Pencil size={12} /> Editar</button>
-        <button
-          class="btn tiny ghost"
-          onclick={() => confirm('¿Quitar esta carta de la lámina?') && removeCard(card)}
-        >
-          <Trash size={12} /> Quitar
-        </button>
+        {#if confirmingRemove}
+          <span class="confirm-text">¿Quitar este dato?</span>
+          <button class="btn tiny" onclick={() => removeCard(card)}><Trash size={12} /> Sí, quitar</button>
+          <button class="btn tiny ghost" onclick={() => (confirmingRemove = false)}>No</button>
+        {:else}
+          <button class="btn tiny ghost" onclick={() => (confirmingRemove = true)}><Trash size={12} /> Quitar</button>
+        {/if}
       {:else if card.type === 'supuesto'}
         {#if card.state === 'sin_confirmar'}
           <button class="btn tiny primary" onclick={() => confirmCard(card)}><Check size={12} /> Confirmar</button>

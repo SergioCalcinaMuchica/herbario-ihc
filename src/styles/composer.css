@@ -354,6 +354,7 @@ button.brief-chip:hover { border-color: var(--moss-mid); background: var(--moss-
 .card input:focus { outline: none; border-color: var(--moss-mid); box-shadow: 0 0 0 2px color-mix(in srgb, var(--moss) 10%, transparent); }
 .card .actions { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 7px; border: 0; padding: 0; }
 .card .actions li { all: unset; }
+.card .actions .confirm-text { align-self: center; margin-left: 4px; font-size: 12px; font-weight: 600; color: var(--ink-soft); }
 .card .phase {
   font-size: 9px;
   text-transform: uppercase;
