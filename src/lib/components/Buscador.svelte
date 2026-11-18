@@ -3,7 +3,6 @@
   import { allNodes, allNodesEverywhere, app, openNode, speciesList } from '#lib/store.svelte';
   import { focusTrap } from '#lib/focus';
   import {
-    ArrowUpRight,
     Check,
     CircleQuestionMark,
     FileText,
@@ -84,7 +83,8 @@
       out.push({
         id: n.id,
         title: n.title,
-        sub: `${n.species} · ${n.date} · ${sessionTitle(n)}`,
+        // El jardín solo se muestra al buscar en todos; en uno solo se repetiría en cada fila.
+        sub: app.searchScope === 'todas' ? `${n.species} · ${n.date} · ${sessionTitle(n)}` : `${n.species} · ${n.date}`,
         snippet: excerpt(`${n.prompt} ${n.esencia}`.trim(), q),
         kind: 'respuesta',
         node: n,
@@ -214,7 +214,6 @@
                 {#if r.kind === 'respuesta'}<FileText size={10} />{:else}<StickyNote size={10} />{/if}
                 {r.kind}
               </span>
-              <ArrowUpRight size={15} />
             </button>
           {/each}
         {/if}

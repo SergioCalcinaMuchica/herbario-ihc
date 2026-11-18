@@ -87,3 +87,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Cada sección juntaba varias ideas distintas en un solo párrafo, unidas con punto y coma. Por ejemplo, dos avisos sobre dos plantas distintas se leían como una sola oración.
 
 **Cambio.** Cuando el texto tiene varias ideas, se muestra como una lista con viñetas, una idea por línea. Si tiene una sola idea, sigue como párrafo.
+
+### Regla 3.7
+
+**Regla.** No incluir "ruido" repetitivo e innecesario en los resultados de búsqueda o en las opciones de enlaces.
+
+**Pantalla.** Ventana Buscar.
+
+**Problema.** Al buscar en "Este jardín", cada resultado repetía el nombre del jardín, aunque todos eran del mismo. Además, cada fila tenía una flecha a la derecha que no agregaba información, porque toda la fila ya se podía abrir.
+
+**Cambio.** El nombre del jardín se muestra solo al buscar en "Todos los jardines", que es cuando ayuda a diferenciar los resultados. También se quitó la flecha de cada fila.
