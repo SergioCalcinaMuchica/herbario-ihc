@@ -270,14 +270,11 @@
         </p>
       </div>
       <div class="head-actions">
-        <button
-          class="icon-btn"
-          aria-label={node.pinned ? 'Quitar de fijadas' : 'Fijar respuesta'}
-          title={node.pinned ? 'Quitar de fijadas' : 'Fijar'}
-          onclick={() => togglePin(node)}
-        >{#if node.pinned}<PinOff size={18} />{:else}<Pin size={18} />{/if}</button>
-        <button class="icon-btn" aria-label="Generar otra versión" title="Otra versión" onclick={() => regenerate(node)}><RefreshCw size={18} /></button>
-        <button class="icon-btn" aria-label="Exportar respuesta" title="Exportar" onclick={download}><Download size={18} /></button>
+        <button class="btn ghost" onclick={() => togglePin(node)}>
+          {#if node.pinned}<PinOff size={15} /> Quitar de fijadas{:else}<Pin size={15} /> Fijar{/if}
+        </button>
+        <button class="btn ghost" onclick={() => regenerate(node)}><RefreshCw size={15} /> Otra versión</button>
+        <button class="btn ghost" onclick={download}><Download size={15} /> Descargar</button>
       </div>
     </header>
 

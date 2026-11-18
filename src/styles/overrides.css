@@ -174,7 +174,6 @@
   .invernadero { padding: 8px 7px 6px; }
   .lamina { padding: 16px 13px 12px; }
   .lamina-head h1 { font-size: 22px; }
-  .head-actions .icon-btn { width: 32px; height: 32px; }
   .actions li { grid-template-columns: 24px minmax(0, 1fr); gap: 9px; font-size: 13px; }
   .actions .num { width: 24px; height: 24px; }
   .cand { flex-direction: column; }
@@ -189,8 +188,7 @@
   .brief-assume-x { width: 40px; height: 40px; }
   .mem-tabs button, .voice-count, .door, .brief-option, .brief-trigger, .brief-chip.skipped, .facet, .chip, .count-chip, select, input, textarea, summary { min-height: 44px; }
   .term { display: inline-flex; align-items: center; min-height: 44px; padding: 6px 1px; position: relative; }
-  .top-actions .btn { min-height: 44px; }
-  .head-actions .icon-btn { width: 44px; height: 44px; }
+  .top-actions .btn, .head-actions .btn { min-height: 44px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -397,9 +395,6 @@
 .result .kind.carta { color: var(--olive-dark); background: var(--olive-soft); }
 
 /* Otoño · remates de contraste */
-.head-actions .icon-btn:nth-child(1) svg { color: var(--ochre); }
-.head-actions .icon-btn:nth-child(2) svg { color: var(--olive); }
-.head-actions .icon-btn:nth-child(3) svg { color: var(--plum); }
 
 .btn.primary:disabled {
   opacity: 1;
