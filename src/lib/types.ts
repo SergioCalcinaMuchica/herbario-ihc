@@ -93,6 +93,8 @@ export interface KnowledgeNode {
   staleReason?: string;
   milestones: string[];
   done: number;
+  /** Pasos de «Qué hacer» que el usuario marcó como hechos (por posición). */
+  stepsDone?: number[];
 }
 
 export interface Branch {

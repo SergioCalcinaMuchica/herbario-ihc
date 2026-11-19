@@ -20,6 +20,7 @@ function applyGenerated(node: KnowledgeNode, content: Generated) {
   node.cards = mergeGenerated(node.cards, content.cards);
   node.status = "lista";
   node.staleReason = undefined;
+  node.stepsDone = [];
   node.done = node.milestones.length;
   touch(node);
 }

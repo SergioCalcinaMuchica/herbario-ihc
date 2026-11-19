@@ -251,3 +251,15 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** En la pantalla de la respuesta había hasta seis botones rojos a la vez: "Nueva", "Confirmar", tres "Elegir esta" y "Generar". Con el mismo peso, ninguno destacaba como la acción principal.
 
 **Cambio.** "Nueva", "Confirmar" y "Elegir esta" pasan a botones normales con borde. Solo "Generar" queda rojo, y se enciende cuando hay algo escrito. Los botones que aparecen solos en un aviso, como "Actualizar respuesta" o "Reanudar", siguen rojos porque en ese momento son la única acción.
+
+## Capítulo 8
+
+### Regla 8.3
+
+**Regla.** Utilizar ayudas de memoria externas que indiquen lo que el usuario ya hizo, y permitirle marcar objetos para seguir su progreso.
+
+**Pantalla.** Respuesta, bloque "Qué hacer".
+
+**Problema.** Los pasos eran una lista numerada que no se podía marcar. Son tareas que el usuario hace con la planta en la mano y en distintos momentos, así que al volver tenía que recordar por cuál iba.
+
+**Cambio.** Cada paso tiene una casilla. El paso marcado se ve tachado y más claro, y junto al título dice cuántos van, por ejemplo "1 de 4 hechos". Lo marcado se guarda y sigue ahí al volver a la respuesta. Si la respuesta se vuelve a generar, las marcas se borran porque los pasos pueden cambiar.

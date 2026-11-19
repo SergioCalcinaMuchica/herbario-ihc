@@ -166,6 +166,12 @@
     desactualizada: 'Desactualizada'
   };
 
+  /** Marca o desmarca un paso de «Qué hacer» para que el usuario sepa por dónde va. */
+  function toggleStep(n: KnowledgeNode, i: number) {
+    const marked = n.stepsDone ?? [];
+    n.stepsDone = marked.includes(i) ? marked.filter((x) => x !== i) : [...marked, i];
+  }
+
   function segments(n: KnowledgeNode) {
     const terms = [...n.terms].sort((a, b) => b.word.length - a.word.length);
     const out: { text: string; term?: Term }[] = [];
@@ -391,10 +397,16 @@
 
     {#if done >= 1 && node.actions.length}
       <section class="actions" aria-label="Acciones">
-        <h2>Qué hacer</h2>
+        <h2>Qué hacer <span class="steps-count">{node.stepsDone?.length ?? 0} de {node.actions.length} hechos</span></h2>
         <ol>
           {#each node.actions as action, i (action)}
-            <li><span class="num">{i + 1}</span>{action}</li>
+            <li class:hecho={node.stepsDone?.includes(i)}>
+              <label>
+                <input type="checkbox" checked={node.stepsDone?.includes(i) ?? false} onchange={() => toggleStep(node, i)} />
+                <span class="num">{i + 1}</span>
+                <span>{action}</span>
+              </label>
+            </li>
           {/each}
         </ol>
       </section>
