@@ -122,9 +122,9 @@
   });
 
   const treeStats = $derived([
-    { icon: MessagesSquare, value: nodes.length, label: 'consultas' },
-    { icon: Sprout, value: roots.length, label: roots.length === 1 ? 'raíz' : 'raíces' },
-    { icon: GitFork, value: forks, label: forks === 1 ? 'bifurcación' : 'bifurcaciones' },
+    { icon: MessagesSquare, value: nodes.length, label: 'respuestas' },
+    { icon: Sprout, value: roots.length, label: roots.length === 1 ? 'conversación' : 'conversaciones' },
+    { icon: GitFork, value: forks, label: forks === 1 ? 'continuación' : 'continuaciones' },
     { icon: Route, value: maxDepth, label: maxDepth === 1 ? 'nivel' : 'niveles' }
   ]);
 
@@ -307,10 +307,10 @@
         <span class="modal-icon" aria-hidden="true"><GitBranch size={18} /></span>
         <div class="modal-head-titles">
           <p class="eyebrow">
-            Linaje · {nodes.length} consultas · {roots.length} {roots.length === 1 ? 'raíz' : 'raíces'}{#if q} · {matches.length} coincidencias{/if}
+            {nodes.length} respuestas · {roots.length} {roots.length === 1 ? 'conversación' : 'conversaciones'}{#if q} · {matches.length} coincidencias{/if}
           </p>
           <h2 id="tree-title">Árbol de respuestas</h2>
-          <p class="tree-subtitle">Cada respuesta abre una rama. Explora el linaje y vuelve a cualquier decisión.</p>
+          <p class="tree-subtitle">Cada continuación sale de una respuesta anterior. Puedes volver a cualquiera.</p>
         </div>
         <button class="icon-btn" aria-label="Cerrar árbol" onclick={close}><X size={18} /></button>
       </header>
@@ -353,7 +353,7 @@
         </div>
       </div>
 
-      <div class="tree-stats" aria-label="Resumen del linaje">
+      <div class="tree-stats" aria-label="Resumen de las conversaciones">
         {#each treeStats as stat, i}
           {@const StatIcon = stat.icon}
           <div class="tree-stat" data-stat={i}>
@@ -368,17 +368,17 @@
           {#if stressHint}
             <div class="tree-hint">
               <Info size={16} />
-              <span>Este conjunto no tiene linaje todavía. Carga el ejemplo para ver forks y subforks.</span>
+              <span>Todavía no hay conversaciones. Carga el ejemplo para ver cómo se ven.</span>
               <button class="btn tiny" onclick={loadExample}>Cargar ejemplo</button>
             </div>
           {/if}
 
           {#if q && !matches.length}
-            <p class="tree-empty">No hay consultas que coincidan con «{query.trim()}».</p>
+            <p class="tree-empty">No hay respuestas que coincidan con «{query.trim()}».</p>
           {:else if !roots.length}
             <p class="tree-empty">Todavía no hay respuestas en este jardín.</p>
           {:else}
-            <ul class="tree-list" aria-label="Linaje de respuestas">
+            <ul class="tree-list" aria-label="Conversaciones y sus respuestas">
               {#each pagedRoots as root (root.id)}
                 {@render treeRow(root, 1)}
               {/each}
@@ -391,7 +391,7 @@
           {/if}
         </div>
 
-        <aside class="tree-preview" aria-label="Vista previa de la consulta">
+        <aside class="tree-preview" aria-label="Vista previa de la respuesta">
           {#if preview}
             {@const previewKids = byParent.get(preview.id)?.length ?? 0}
             <div class="preview-head">
@@ -405,7 +405,7 @@
                   <ChevronRight size={10} />
                 {/each}
               {:else}
-                <span>Raíz del linaje</span>
+                <span>Inicio de la conversación</span>
               {/if}
             </div>
             <h3 class="preview-title">{preview.title}</h3>
@@ -419,7 +419,7 @@
             <p class="preview-essence">{preview.esencia}</p>
             <div class="preview-facts">
               <span><ListChecks size={11} />{preview.actions.length} pasos</span>
-              <span><GitFork size={11} />{previewKids} {previewKids === 1 ? 'rama' : 'ramas'}</span>
+              <span><GitFork size={11} />{previewKids} {previewKids === 1 ? 'continuación' : 'continuaciones'}</span>
               <span><Library size={11} />{preview.cards.length} datos</span>
             </div>
             <button class="btn primary preview-open" onclick={goPreview}>
@@ -429,14 +429,14 @@
           {:else}
             <div class="preview-empty">
               <ScanEye size={26} />
-              <p>Pasa el cursor por una consulta para ver su contexto.</p>
+              <p>Pasa el cursor por una respuesta para ver su contexto.</p>
             </div>
           {/if}
         </aside>
       </div>
 
       <footer class="modal-foot">
-        <span>Abre una consulta con un clic. El borde olivo marca tu posición.</span>
+        <span>Abre una respuesta con un clic. El borde olivo marca tu posición.</span>
       </footer>
     </div>
   </div>

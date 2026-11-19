@@ -120,8 +120,8 @@
   {#if inherited.length}
     <p class="inherited-line">
       <GitFork size={13} />
-      {inherited.length} {inherited.length === 1 ? 'carta heredada' : 'cartas heredadas'} de otras respuestas.
-      <button class="link" onclick={() => openLedger('heredado')}>Revisar herencia</button>
+      {inherited.length} {inherited.length === 1 ? 'nota viene' : 'notas vienen'} de otras respuestas.
+      <button class="link" onclick={() => openLedger('heredado')}>Ver de dónde vienen</button>
     </p>
   {/if}
 </section>

@@ -161,3 +161,26 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** El punto que marca la respuesta actual parpadeaba sin parar mientras el Árbol estaba abierto. El movimiento atraía la mirada una y otra vez mientras el usuario leía los títulos, sin avisar nada nuevo.
 
 **Cambio.** El punto queda fijo. La respuesta actual se sigue reconociendo por el punto y por su título en negrita y en verde.
+
+## Capítulo 6
+
+### Regla 6.6 (con apoyo de la 6.1)
+
+**Regla.** No usar vocabulario poco común, desconocido o jerga técnica. La 6.1 pide además un vocabulario restringido y consistente.
+
+**Pantalla.** Todas: respuesta, panel izquierdo, caja de escritura, Contexto, Historial, Buscar, Árbol y avisos breves.
+
+**Problema.** La interfaz usaba palabras del código ("carta", "hilo", "ámbito", "global", "heredado", "linaje", "lámina") y llamaba a una misma cosa de varias formas ("hilo", "línea" y "rama" para una conversación). La misma elección de alcance tenía dos juegos de nombres.
+
+**Cambio.** Se usan pocas palabras y siempre las mismas:
+- "Carta" pasa a "Nota".
+- "Hilo", "línea" y "rama" pasan a "conversación" ("Conversación nueva", "Todas las conversaciones").
+- "2 líneas" pasa a "2 continuaciones".
+- El estado "Lista" pasa a "Completa".
+- Se quita la etiqueta "Herbario" que aparecía como modelo de cada respuesta.
+- "Heredado" y "Revisar herencia" pasan a "De otras respuestas" y "Ver de dónde vienen".
+- "Ámbito: hilo, especie o global" pasa a "Se aplica a: esta conversación, esta planta o siempre", igual que en el recuadro de las palabras con "?".
+- "Reformular" pasa a "Editar mi pregunta".
+- En el Árbol, "linaje", "raíz", "bifurcación" y "consulta" pasan a "respuestas", "conversaciones" y "continuaciones".
+- "Supuestos" pasa a "suposiciones", con singular correcto ("1 suposición").
+- Los avisos breves dejan de decir "lámina", "versionado", "ámbito" y "rama".

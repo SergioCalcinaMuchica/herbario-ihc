@@ -37,6 +37,7 @@ export {
   replaceTerm,
   resolvePreference,
   restoreTerms,
+  scopeLabel,
   setScope,
 } from "./store/cards";
 export {

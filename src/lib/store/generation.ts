@@ -59,7 +59,7 @@ export function recalc(node: KnowledgeNode) {
     node,
     buildContent(node.prompt || node.title, branch, node.brief),
   );
-  toast(`Lámina recalculada · v${node.version}`);
+  toast("Respuesta actualizada");
 }
 
 export function reformulate(node: KnowledgeNode) {
@@ -75,7 +75,7 @@ export function reformulate(node: KnowledgeNode) {
   app.leftOpen = false;
   app.rightOpen = false;
   toast(
-    "Consulta copiada. Al generarla se abre una línea nueva; la original no cambia.",
+    "Pregunta copiada. Al enviarla se abre una conversación nueva y la original no cambia.",
   );
 }
 
@@ -98,7 +98,7 @@ export function discardDraft(node: KnowledgeNode) {
     branch.nodes[Math.min(Math.max(index - 1, 0), branch.nodes.length - 1)];
   app.activeNodeId = neighbour?.id ?? "";
   app.branchTarget = neighbour ? "active" : "new";
-  toast("Borrador descartado. La consulta sigue en el composer.");
+  toast("Borrador descartado. Tu pregunta sigue en la caja de escritura.");
 }
 
 export function newConsultation() {
@@ -192,7 +192,7 @@ export function chooseCandidate(c: Candidate) {
   app.newBranchName = "";
   app.leftOpen = false;
   app.rightOpen = false;
-  toast(`${c.name} elegida: rama creada`);
+  toast(`${c.name} elegida: conversación nueva creada`);
 }
 
 export function branchSuggestion(input: string): string {
@@ -329,7 +329,7 @@ function startStreaming(nodeToStream: KnowledgeNode) {
     if (nodeToStream.done >= nodeToStream.milestones.length) {
       nodeToStream.status = "lista";
       stopTimer();
-      toast("Lámina lista");
+      toast("Respuesta completa");
     }
   }, 900));
 }
@@ -348,7 +348,7 @@ export function loadStressCase() {
   app.stress = true;
   app.leftOpen = false;
   app.rightOpen = false;
-  toast("Caso de estrés: 200 láminas y 3.400 cartas");
+  toast("Caso de estrés: 200 respuestas y 3.400 notas");
 }
 
 export function loadTreeDemo() {

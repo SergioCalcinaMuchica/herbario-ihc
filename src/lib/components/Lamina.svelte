@@ -8,7 +8,6 @@
     ChevronDown,
     CircleExclamationPoint,
     CirclePause,
-    Cpu,
     Download,
     Droplets,
     FlaskConical,
@@ -161,7 +160,7 @@
   };
 
   const statusLabels: Record<KnowledgeNode['status'], string> = {
-    lista: 'Lista',
+    lista: 'Completa',
     generando: 'Generando',
     borrador: 'Borrador',
     desactualizada: 'Desactualizada'
@@ -215,8 +214,6 @@
       '',
       '## Contexto',
       context,
-      '',
-      `Modelo: ${node.model}`
     ].join('\n');
     const url = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
     const a = document.createElement('a');
@@ -271,7 +268,6 @@
         <p class="eyebrow"><Flower2 size={12} /> {node.species} · {node.date}</p>
         <h1>{node.title}</h1>
         <p class="meta">
-          <span><Cpu size={11} /> {node.model}</span>
           <span><CalendarDays size={11} /> {node.generatedAt}</span>
           <span class="status {node.status}">{statusLabels[node.status]}</span>
           {#if node.changeNote}
@@ -281,7 +277,7 @@
             <button class="link" onclick={() => openNode(parentNode.id)}>Desde: {parentNode.title}</button>
           {/if}
           {#if lines > 1}
-            <span class="lines" title={`${lines} continuaciones desde esta respuesta`}>{lines} líneas</span>
+            <span class="lines" title={`${lines} continuaciones desde esta respuesta`}>{lines} continuaciones</span>
           {/if}
         </p>
       </div>
@@ -350,7 +346,7 @@
                     <span class="def">{part.term.def}</span>
                     <span class="popover-label">Cambiar por lenguaje llano en:</span>
                     <span class="popover-actions">
-                      <button class="btn tiny" onclick={() => apply(part.term!, 'hilo')}>Esta respuesta</button>
+                      <button class="btn tiny" onclick={() => apply(part.term!, 'hilo')}>Esta conversación</button>
                       <button class="btn tiny" onclick={() => apply(part.term!, 'especie')}>Esta planta</button>
                       <button class="btn tiny" onclick={() => apply(part.term!, 'global')}>Siempre</button>
                     </span>
@@ -460,11 +456,9 @@
     <Contexto {node} />
 
     <footer class="provenance">
-      <Cpu size={13} />
-      <span>{node.model}</span>
       <div class="prov-actions">
         <button class="link" onclick={() => openLedger('lamina')}><MessagesSquare size={13} /> Ver las tres voces</button>
-        <button class="link" onclick={() => reformulate(node)}><RefreshCw size={13} /> Reformular</button>
+        <button class="link" onclick={() => reformulate(node)}><RefreshCw size={13} /> Editar mi pregunta</button>
         {#if Object.keys(node.replaced).length}
           <button class="link" onclick={() => restoreTerms(node)}><Undo2 size={13} /> Restaurar términos</button>
         {/if}

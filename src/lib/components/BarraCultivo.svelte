@@ -124,7 +124,7 @@
           </p>
         </div>
         <button class="btn primary" onclick={sendForSpecies}>
-          Crear hilo de {mismatch.split(' ')[0]}
+          Crear conversación de {mismatch.split(' ')[0]}
         </button>
       </div>
     {/if}
@@ -132,11 +132,11 @@
     {#if !mismatch && (fork || children.length)}
       <div class="fork-note" role="status">
         {#if fork}
-          <strong><GitFork size={14} /> Nueva línea desde «{fork.title}»</strong>
-          <span>La respuesta original no cambia. Al generar, esta consulta queda como una línea aparte.</span>
+          <strong><GitFork size={14} /> Conversación nueva desde «{fork.title}»</strong>
+          <span>La respuesta original no cambia. Al generar, esta pregunta queda en una conversación aparte.</span>
         {:else}
           <strong><GitFork size={14} /> Estás en una respuesta anterior.</strong>
-          <span>Lo que generes aquí abre una línea nueva; las demás se conservan.</span>
+          <span>Lo que generes aquí abre una conversación nueva; las demás se conservan.</span>
         {/if}
       </div>
     {/if}
@@ -154,7 +154,7 @@
     <div class="composer-foot">
       <span class="composer-hint">
         <Leaf size={12} />
-        {#if branch}<span>{branch.name} · {branch.species}</span>{:else}Nuevo hilo{/if}
+        {#if branch}<span>{branch.name} · {branch.species}</span>{:else}Conversación nueva{/if}
         <span class="sep">·</span><kbd>Enter</kbd> para generar
       </span>
       <div class="composer-actions">

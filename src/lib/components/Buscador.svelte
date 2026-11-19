@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CardType, KnowledgeNode } from '#lib/types';
-  import { allNodes, allNodesEverywhere, app, openNode, speciesList } from '#lib/store.svelte';
+  import { allNodes, allNodesEverywhere, app, openNode, scopeLabel, speciesList } from '#lib/store.svelte';
   import { focusTrap } from '#lib/focus';
   import {
     Check,
@@ -102,7 +102,7 @@
         out.push({
           id: c.id,
           title: c.text,
-          sub: `${typeName[c.type]} · ${c.scope} · ${n.date} · ${n.species}`,
+          sub: `${typeName[c.type]} · ${scopeLabel[c.scope]} · ${n.date} · ${n.species}`,
           snippet: c.text.length > 80 ? excerpt(c.text, q) : `En: ${n.title}`,
           kind: 'carta',
           node: n,
@@ -212,7 +212,7 @@
               <span class="snip">{r.snippet}</span>
               <span class="kind" class:carta={r.kind === 'carta'}>
                 {#if r.kind === 'respuesta'}<FileText size={10} />{:else}<StickyNote size={10} />{/if}
-                {r.kind}
+                {r.kind === 'carta' ? 'Nota' : 'Respuesta'}
               </span>
             </button>
           {/each}

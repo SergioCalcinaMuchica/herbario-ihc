@@ -5,6 +5,13 @@ import { activeNode, allNodes, allNodesEverywhere, ownerOfCard, sessionOfNode } 
 
 const SCOPES: Scope[] = ["hilo", "especie", "global"];
 
+/** Nombre que ve el usuario para cada alcance de una nota. */
+export const scopeLabel: Record<Scope, string> = {
+  hilo: "esta conversación",
+  especie: "esta planta",
+  global: "siempre",
+};
+
 export function touch(node: KnowledgeNode) {
   node.version += 1;
   node.generatedAt = new Date().toISOString().slice(0, 16).replace("T", " ");
@@ -35,7 +42,7 @@ export function confirmCard(c: Card) {
   c.phase = undefined;
   const owner = ownerOfCard(c);
   if (owner) touch(owner);
-  toast("Supuesto confirmado: queda versionado");
+  toast("Suposición confirmada");
 }
 
 export function correctCard(c: Card, text: string) {
@@ -50,7 +57,7 @@ export function correctCard(c: Card, text: string) {
     owner.staleReason = `Corregiste «${c.text}» en esta respuesta.`;
     markDependents(c, owner);
   }
-  toast("Supuesto corregido: las láminas dependientes quedan desactualizadas");
+  toast("Suposición corregida: las respuestas que dependen de ella se marcan para revisar");
 }
 
 export function ignoreCard(c: Card) {
@@ -63,7 +70,7 @@ export function ignoreCard(c: Card) {
     owner.staleReason = `Ignoraste «${c.text}» en esta respuesta.`;
     markDependents(c, owner);
   }
-  toast("Supuesto ignorado: las láminas dependientes quedan desactualizadas");
+  toast("Suposición ignorada: las respuestas que dependen de ella se marcan para revisar");
 }
 
 export function resolvePreference(keep: Card, all: Card[]) {
@@ -75,7 +82,7 @@ export function resolvePreference(keep: Card, all: Card[]) {
     touch(owner);
     markDependents(keep, owner);
   }
-  toast("Preferencia resuelta para este ámbito");
+  toast("Preferencia guardada");
 }
 
 
@@ -99,7 +106,7 @@ export function removeCard(c: Card) {
   node.cards = node.cards.filter((x) => x.id !== c.id);
   touch(node);
   markDependents(c, node);
-  toast("Carta quitada");
+  toast("Nota quitada");
 }
 
 export function setScope(c: Card, scope: Scope) {
@@ -110,7 +117,7 @@ export function setScope(c: Card, scope: Scope) {
     touch(owner);
     markDependents(c, owner);
   }
-  toast(`Ámbito: ${scope}`);
+  toast(`Se aplica a ${scopeLabel[scope]}`);
 }
 
 export function nextScope(c: Card) {
@@ -128,7 +135,7 @@ export function replaceTerm(node: KnowledgeNode, term: Term, scope: Scope) {
   node.cards.push(pref);
   touch(node);
   markDependents(pref, node);
-  toast(`Término reemplazado · ámbito ${scope}`);
+  toast(`Palabra cambiada en ${scopeLabel[scope]}`);
 }
 
 export function restoreTerms(node: KnowledgeNode) {

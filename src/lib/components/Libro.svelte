@@ -71,7 +71,7 @@
   const tabs = [
     { id: 'lamina' as const, label: 'Esta respuesta', icon: FileText },
     { id: 'sesion' as const, label: 'Este jardín', icon: MessagesSquare },
-    { id: 'heredado' as const, label: 'Heredado', icon: GitFork }
+    { id: 'heredado' as const, label: 'De otras respuestas', icon: GitFork }
   ];
   const sessionNodes = $derived(
     allNodes()
@@ -100,7 +100,7 @@
   }
 
   const statusLabel: Record<string, string> = {
-    lista: 'lista',
+    lista: 'completa',
     borrador: 'borrador',
     generando: 'generando',
     desactualizada: 'desactualizada'
@@ -149,7 +149,7 @@
             <section class="voice user">
               <h3><UserRound size={15} /> Tú dijiste</h3>
               <p class="quote">«{node.prompt}»</p>
-              <p class="voice-meta">{node.date} · hilo {branches.find((b) => b.id === node.branchId)?.name ?? '—'}</p>
+              <p class="voice-meta">{node.date} · conversación {branches.find((b) => b.id === node.branchId)?.name ?? '—'}</p>
               {#if brief.length}
                 <div class="facts">
                   {#each brief as f (f)}<span class="fact">{f}</span>{/each}
@@ -166,7 +166,7 @@
               <h3><Sparkles size={15} /> La IA propuso</h3>
               <p>{node.esencia}</p>
               <p class="voice-meta">
-                {node.model} · {node.generatedAt} ·
+                {node.generatedAt} ·
                 {node.actions.length} acciones · {node.params.length} parámetros ·
                 {node.sections.length} secciones
               </p>
@@ -191,7 +191,7 @@
             <section class="voice assumed">
               <h3><Lightbulb size={15} /> La IA supuso</h3>
               {#if assumptions.length === 0}
-                <p class="voice-meta">No hay supuestos registrados.</p>
+                <p class="voice-meta">No hay suposiciones.</p>
               {:else}
                 <p class="voice-meta">
                   {unconfirmed(node).length} sin confirmar · {assumptions.length} en total
@@ -209,12 +209,12 @@
         <div class="ledger-filters">
           <input
             class="modal-input"
-            placeholder="Filtrar el libro por planta, síntoma o consulta…"
+            placeholder="Filtrar por planta, síntoma o pregunta…"
             bind:value={sessionQuery}
             aria-label="Filtrar el historial del jardín"
           />
-          <select bind:value={branchFilter} aria-label="Filtrar por hilo">
-            <option value="">Todos los hilos</option>
+          <select bind:value={branchFilter} aria-label="Filtrar por conversación">
+            <option value="">Todas las conversaciones</option>
             {#each branches as b (b.id)}
               <option value={b.id}>{b.name}</option>
             {/each}
@@ -241,7 +241,7 @@
                 <p class="entry-ai"><span>La IA propuso:</span> {n.esencia}</p>
                 <p class="entry-sup">
                   <span>La IA supuso:</span>
-                  {n.cards.filter((c) => c.type === 'supuesto').length} supuestos
+                  {n.cards.filter((c) => c.type === 'supuesto').length === 1 ? '1 suposición' : `${n.cards.filter((c) => c.type === 'supuesto').length} suposiciones`}
                   ({n.cards.filter((c) => c.type === 'supuesto' && c.state === 'sin_confirmar').length} sin confirmar)
                 </p>
               </article>
@@ -301,10 +301,10 @@
 
           <div class="ledger-body">
             {#if archiveFiltered.length === 0}
-              <div class="results-empty">Ninguna carta con ese filtro para {node.species}.</div>
+              <div class="results-empty">Ninguna nota con ese filtro para {node.species}.</div>
             {:else}
               <p class="voice-meta">
-                Cartas de esta respuesta y heredadas de otras respuestas, filtrables por ámbito y tipo.{activeScopedCount ? ` ${activeScopedCount} reglas activas de especie/global.` : ''}
+                Notas de esta respuesta y de otras respuestas.{activeScopedCount ? ` ${activeScopedCount} se aplican a esta planta o siempre.` : ''}
               </p>
               <div class="ledger-cards">
                 {#each archiveShown as c (c.id)}

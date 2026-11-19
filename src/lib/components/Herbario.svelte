@@ -83,7 +83,7 @@
           <span class="mem-meta">
             {n.species} · {shortDate(n.date)}
             {#if pending(n)}<span class="pending">{pending(n)} por confirmar</span>{/if}
-            {#if lineCount(n) > 1}<span class="lines">{lineCount(n)} líneas</span>{/if}
+            {#if lineCount(n) > 1}<span class="lines">{lineCount(n)} continuaciones</span>{/if}
           </span>
           <span class="mem-snippet">{snippet(n)}</span>
         </button>
@@ -103,7 +103,7 @@
               <span class="mem-meta">
                 {shortDate(n.date)}
                 {#if pending(n)}<span class="pending">{pending(n)} por confirmar</span>{/if}
-                {#if lineCount(n) > 1}<span class="lines">{lineCount(n)} líneas</span>{/if}
+                {#if lineCount(n) > 1}<span class="lines">{lineCount(n)} continuaciones</span>{/if}
               </span>
             </button>
           {/each}
@@ -122,7 +122,7 @@
           </span>
           <span class="mem-meta">
             {n.species} · {shortDate(n.date)}
-            {#if lineCount(n) > 1}<span class="lines">{lineCount(n)} líneas</span>{/if}
+            {#if lineCount(n) > 1}<span class="lines">{lineCount(n)} continuaciones</span>{/if}
           </span>
           <span class="mem-snippet">{snippet(n)}</span>
         </button>
@@ -133,7 +133,7 @@
   </div>
 
   <footer class="mem-foot">
-    <span><MessagesSquare size={13} /> {nodes.length} respuestas · {totalPending} supuestos pendientes</span>
+    <span><MessagesSquare size={13} /> {nodes.length} respuestas · {totalPending} {totalPending === 1 ? 'suposición pendiente' : 'suposiciones pendientes'}</span>
     <label class="session-select">
       <span class="sr-only">Jardín</span>
       <select value={app.sessionId} onchange={(e: Event) => switchSession((e.currentTarget as HTMLSelectElement).value)}>

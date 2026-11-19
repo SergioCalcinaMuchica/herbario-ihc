@@ -27,7 +27,8 @@
     nextScope,
     removeCard,
     togglePin,
-    toast
+    toast,
+    scopeLabel
   } from '#lib/store.svelte';
 
   let { card, compact = false }: { card: Card; compact?: boolean } = $props();
@@ -75,14 +76,14 @@
   }
 
   function exportCard() {
-    const md = `# ${labels[card.type]}\n\n${card.text}\n\nÁmbito: ${card.scope}\n`;
+    const md = `# ${labels[card.type]}\n\n${card.text}\n\nSe aplica a: ${scopeLabel[card.scope]}\n`;
     const url = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
     const a = document.createElement('a');
     a.href = url;
     a.download = `carta-${card.id}.md`;
     a.click();
     URL.revokeObjectURL(url);
-    toast('Carta exportada');
+    toast('Nota exportada');
   }
 
   function pinOwner() {
@@ -98,7 +99,7 @@
     {#if card.type === 'supuesto' && card.confidence}
       <span class="scope">confianza {card.confidence}</span>
     {:else}
-      <span class="scope">{card.scope}</span>
+      <span class="scope">{scopeLabel[card.scope]}</span>
     {/if}
   </div>
 
@@ -148,7 +149,7 @@
           <div class="more-menu">
             <button class="btn tiny ghost" onclick={() => begin('correct')}><Pencil size={12} /> Corregir</button>
             <button class="btn tiny ghost" onclick={() => ignoreCard(card)}><EyeOff size={12} /> Ignorar</button>
-            <button class="btn tiny ghost" onclick={() => nextScope(card)}><Globe size={12} /> Ámbito: {card.scope}</button>
+            <button class="btn tiny ghost" onclick={() => nextScope(card)}><Globe size={12} /> Se aplica a: {scopeLabel[card.scope]}</button>
             <button class="btn tiny ghost" onclick={() => removeCard(card)}><Trash size={12} /> Quitar</button>
           </div>
         </details>
@@ -161,7 +162,7 @@
             <ChevronDown class="chevron" size={12} />
           </summary>
           <div class="more-menu">
-            <button class="btn tiny ghost" onclick={() => nextScope(card)}><Globe size={12} /> Ámbito: {card.scope}</button>
+            <button class="btn tiny ghost" onclick={() => nextScope(card)}><Globe size={12} /> Se aplica a: {scopeLabel[card.scope]}</button>
             <button class="btn tiny ghost" onclick={() => removeCard(card)}><Trash size={12} /> Descartar</button>
           </div>
         </details>

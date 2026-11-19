@@ -175,20 +175,20 @@ export function renameBranch(branch: Branch, name: string) {
   const clean = name.trim();
   if (!clean) return;
   branch.name = clean;
-  toast("Rama renombrada");
+  toast("Conversación renombrada");
 }
 
 export function toggleBranchClosed(branch: Branch) {
   branch.closed = !branch.closed;
-  toast(branch.closed ? "Rama cerrada: sigue buscable" : "Rama reabierta");
+  toast(branch.closed ? "Conversación cerrada: se puede seguir buscando" : "Conversación reabierta");
 }
 
 export function togglePin(node: KnowledgeNode) {
   node.pinned = !node.pinned;
   toast(
     node.pinned
-      ? "Lámina fijada en la Biblioteca"
-      : "Lámina quitada de la Biblioteca",
+      ? "Respuesta fijada"
+      : "Respuesta ya no está fijada",
   );
 }
 
