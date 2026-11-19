@@ -246,7 +246,7 @@
     <p class="eyebrow"><Leaf size={12} /> Herbario · asistente botánico</p>
     <h1>¿Qué quieres entender hoy?</h1>
     <p class="empty-lead">
-      No necesitas saber botánica ni escribir un prompt perfecto. Cuéntame lo que ves y te pregunto lo que falte.
+      No necesitas saber de plantas. Cuéntame lo que ves y te pregunto lo que falte.
     </p>
     <div class="doors">
       {#each doors as door, i (door.title)}

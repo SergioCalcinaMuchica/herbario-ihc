@@ -209,3 +209,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 - El pie del Historial dice "Si corriges una suposición, se marcan las respuestas que dependen de ella."
 - El pie del Árbol dice "Haz clic en una respuesta para abrirla."
 - El aviso de la caja de escritura dice "Lo que generes abre una conversación nueva." o "La respuesta original no cambia."
+
+### Regla 6.12
+
+**Regla.** No centrar párrafos de múltiples líneas.
+
+**Pantalla.** Entrada "¿Qué quieres entender hoy?".
+
+**Problema.** El texto debajo del título estaba centrado y ocupaba dos líneas, lo que obliga a buscar el inicio de la segunda línea. Además decía "botánica" y "prompt".
+
+**Cambio.** El texto queda en una sola línea: "No necesitas saber de plantas. Cuéntame lo que ves y te pregunto lo que falte."
