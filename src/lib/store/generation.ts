@@ -4,6 +4,7 @@ import { card, node, uid } from "../data/factory";
 import { buildStressSession, buildTreeDemoSession } from "../data/demos";
 import { mergeGenerated, promptSpecies, titleFor } from "../engine/context";
 import { buildContent, type Generated } from "../engine/generator";
+import { careFor, careParams } from "../engine/cuidados";
 import { app, setGenTimer, stopGeneration, stopTimer, streamingNode, toast } from "./state.svelte";
 import { activeBranch, activeNode, branchOf, openNode, switchSession } from "./queries";
 import { touch } from "./cards";
@@ -120,35 +121,44 @@ export function chooseCandidate(c: Candidate) {
     branch = app.session.branches[app.session.branches.length - 1];
   }
   branch.closed = false;
+  // Si conocemos la planta, la respuesta trae su ficha completa de cuidados.
+  const care = careFor(c.scientific);
   const n = node({
     id: uid("n"),
     branchId: branch.id,
     parentId: parent?.id,
-    title: `Cuidar ${c.name}`,
+    title: care?.title ?? `Cuidar ${c.name}`,
     species: c.scientific,
     prompt: `Elegiste ${c.name}. ¿Cómo la cuido en casa?`,
-    esencia: `${c.name} encaja porque ${c.fit.toLowerCase()}. La clave: ${c.needs.toLowerCase()}.`,
-    actions: [
+    esencia: care?.esencia ?? `${c.name} encaja porque ${c.fit.toLowerCase()}. La clave: ${c.needs.toLowerCase()}.`,
+    actions: care?.actions ?? [
       `Luz: ${c.light.toLowerCase()}`,
       `Riego: ${c.water.toLowerCase()}`,
       "Comprueba el drenaje antes de regar",
     ],
-    params: [
-      { label: "Luz", value: c.light },
-      { label: "Agua", value: c.water },
-      { label: "Tamaño", value: c.size },
-      { label: "Dificultad", value: "●".repeat(c.difficulty) },
-    ],
-    sections: [
-      { title: "Por qué encaja", body: `${c.fit}. ${c.needs}.` },
-      {
-        title: "Qué vigilar",
-        body:
-          c.pets === "toxica"
-            ? "Manténla fuera del alcance de gatos y perros."
-            : "Revisa las hojas nuevas y el drenaje cada semana.",
-      },
-    ],
+    params: care
+      ? careParams(care)
+      : [
+          { label: "Luz", value: c.light },
+          { label: "Agua", value: c.water },
+          { label: "Tamaño", value: c.size },
+          { label: "Dificultad", value: "●".repeat(c.difficulty) },
+        ],
+    sections: care
+      ? [
+          { title: "Por qué", body: care.porQue },
+          { title: "Qué vigilar", body: care.vigilar },
+        ]
+      : [
+          { title: "Por qué encaja", body: `${c.fit}. ${c.needs}.` },
+          {
+            title: "Qué vigilar",
+            body:
+              c.pets === "toxica"
+                ? "Manténla fuera del alcance de gatos y perros."
+                : "Revisa las hojas nuevas y el drenaje cada semana.",
+          },
+        ],
     cards: [
       card("hecho", `Elegiste ${c.name} (${c.scientific})`, {
         scope: "hilo",
@@ -226,6 +236,7 @@ export function send(
     !wantsNew &&
     branch?.species &&
     branch.species !== "Selección" &&
+    branch.species !== "Especie por identificar" &&
     named &&
     named !== branch.species
   ) {
@@ -257,9 +268,9 @@ export function send(
   const brief: Brief = { ...detectBrief(text), ...app.brief };
   const content = buildContent(text, branch, brief);
   if (!branch.species && content.species) branch.species = content.species;
-  const nodeTitle = content.candidates?.length
-    ? "Tres opciones para elegir"
-    : titleFor(text, brief);
+  const nodeTitle =
+    content.title ??
+    (content.candidates?.length ? "Tres opciones para elegir" : titleFor(text, brief));
   const pre = assumptions.slice(0, 3).map((a) =>
     card("supuesto", a.text, {
       phase: "entrada",

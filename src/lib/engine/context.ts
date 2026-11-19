@@ -10,7 +10,8 @@ interface SelectionSet {
 }
 
 export function isSelection(input: string, brief: Brief = {}): boolean {
-  if (brief.goal === "elegir") return true;
+  // Si el usuario eligió una de las tres tareas, manda esa tarea y no las palabras sueltas.
+  if (brief.goal) return brief.goal === "elegir";
   return /elegir|escoger|recomienda|recomiéndame|sugiere|sugerencias|ideas|opciones|quiero una planta|busco una planta|planta para|qué planta|que planta/.test(
     input.toLowerCase(),
   );
@@ -22,7 +23,7 @@ function wantsPets(t: string, brief: Brief = {}): boolean {
 
 export function selectionSet(t: string, brief: Brief = {}): SelectionSet {
   const sun =
-    brief.light === "sol" || /sol|solead|terraza|balcón|balcon/.test(t);
+    brief.light === "sol" || /\bsol\b|solead|terraza|balc[oó]n/.test(t);
   const pets = wantsPets(t, brief);
   if (pets && sun) {
     return {
@@ -79,7 +80,7 @@ export function selectionConstraints(t: string, brief: Brief = {}): string[] {
   )
     out.push("Riego quincenal");
   if (wantsPets(t, brief)) out.push("Sin tóxicas para mascotas");
-  if (brief.light === "sol" || /sol|solead|terraza|balcón|balcon/.test(t))
+  if (brief.light === "sol" || /\bsol\b|solead|terraza|balc[oó]n/.test(t))
     out.push("Sol directo");
   if (/flor|flore/.test(t)) out.push("Con flor");
   if (brief.space === "pequeno" || /pequeñ|escritorio|estante|baño/.test(t))
@@ -231,7 +232,10 @@ function speciesFromText(t: string): string | null {
   if (/calathea/.test(t)) return "Calathea orbifolia";
   if (/bonsái|bonsai|olmo/.test(t)) return "Ulmus parvifolia";
   if (/anturio/.test(t)) return "Anthurium andraeanum";
+  if (/adansonii/.test(t)) return "Monstera adansonii";
   if (/monstera/.test(t)) return "Monstera deliciosa";
+  if (/selloum|filodendro selloum/.test(t)) return "Thaumatophyllum bipinnatifidum";
+  if (/\bcinta\b|malamadre/.test(t)) return "Chlorophytum comosum";
   if (/sansevieria/.test(t)) return "Dracaena trifasciata";
   if (/potos/.test(t)) return "Epipremnum aureum";
   if (/orquídea|orquidea|phalaenopsis/.test(t)) return "Phalaenopsis";
@@ -245,7 +249,8 @@ export function promptSpecies(input: string): string | null {
 }
 
 export function detectSpecies(t: string, branch: Branch): string {
-  if (branch.species && branch.species !== "Selección") return branch.species;
+  if (branch.species && branch.species !== "Selección" && branch.species !== "Especie por identificar")
+    return branch.species;
   return speciesFromText(t) ?? "Especie por identificar";
 }
 

@@ -112,7 +112,7 @@
       title: 'Conocer sus cuidados',
       text: 'Luz, riego, tierra y maceta, y el porqué de cada uno.',
       goal: 'cuidar' as const,
-      prompt: 'Quiero aprender a cuidar mi planta. ¿Cuánta luz y cuánto riego necesita?'
+      prompt: 'Tengo un potos. ¿Cuánta luz y cuánto riego necesita?'
     }
   ];
 
@@ -187,8 +187,11 @@
       }
       const index = rest.toLowerCase().indexOf(found.word.toLowerCase());
       if (index > 0) out.push({ text: rest.slice(0, index) });
-      out.push({ text: rest.slice(index, index + found.word.length), term: found });
-      rest = rest.slice(index + found.word.length);
+      // La marca abarca la palabra entera («tóxicas»), para que el «?» no quede en medio.
+      let end = index + found.word.length;
+      while (end < rest.length && /\p{L}/u.test(rest[end])) end++;
+      out.push({ text: rest.slice(index, end), term: found });
+      rest = rest.slice(end);
     }
     return out;
   }

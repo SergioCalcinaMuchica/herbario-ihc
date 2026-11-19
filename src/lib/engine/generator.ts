@@ -6,6 +6,7 @@ import {
   selectionConstraints,
   selectionSet,
 } from "./context";
+import { careFor, careOrGeneric, careParams } from "./cuidados";
 
 export interface Generated {
   species: string;
@@ -17,7 +18,36 @@ export interface Generated {
   cards: Card[];
   milestones: string[];
   candidates?: Candidate[];
+  /** Título de la respuesta cuando la tarea lo define. */
+  title?: string;
 }
+
+/** Respuesta de la tarea «Conocer sus cuidados»: luz, riego, tierra y maceta, con su porqué. */
+function careContent(species: string): Generated {
+  const p = careOrGeneric(species);
+  const known = careFor(species) !== null;
+  return {
+    title: p.title,
+    species,
+    milestones: ["Luz y riego", "Tierra y maceta", "Por qué"],
+    esencia: p.esencia,
+    terms: [],
+    actions: p.actions,
+    params: careParams(p),
+    sections: [POR_QUE(p.porQue), VIGILAR(p.vigilar)],
+    cards: known
+      ? [card("supuesto", "La planta está en interior", { confidence: "media" })]
+      : [
+          card("supuesto", "Es una planta de interior de hojas verdes", {
+            confidence: "baja",
+            detail: "No dijiste qué planta es. Dime su nombre para darte cuidados exactos.",
+          }),
+        ],
+  };
+}
+
+/** Palabras que indican que el usuario quiere saber qué planta tiene. */
+const IDENTIFY = /identificar|qu[ée] planta (es|tengo)|c[óo]mo se llama|porte colgante|en roseta|hojas.*carnosas|hojas.*espada|hojas.*agujeros/;
 
 
 export function buildContent(
@@ -31,16 +61,23 @@ export function buildContent(
     milestones: ["Diagnóstico", "Acciones", "Parámetros"],
   };
 
-  if (isSelection(t, brief)) {
+  const identify =
+    brief.goal === "identificar" || (!brief.goal && IDENTIFY.test(t));
+
+  if (!identify && isSelection(t, brief)) {
     const set = selectionSet(t, brief);
     const cons = selectionConstraints(t, brief);
     const sun =
-      brief.light === "sol" || /sol|solead|terraza|balcón|balcon/.test(t);
+      brief.light === "sol" || /\bsol\b|solead|terraza|balc[oó]n/.test(t);
     return {
       species: "Selección",
       esencia: set.blurb,
       terms: [],
-      actions: [],
+      actions: [
+        "Fíjate cuántas horas de luz recibe el lugar donde irá",
+        "Compara abajo la luz, el riego y el tamaño de cada una",
+        "Elige la que mejor encaje y te digo cómo cuidarla",
+      ],
       params: [],
       sections: [{ title: "Cómo elegí estas tres", body: set.why }],
       cards: [
@@ -64,17 +101,58 @@ export function buildContent(
     };
   }
 
-  if (
-    brief.goal === "identificar" ||
-    /identificar|qu[ée] planta es|c[óo]mo se llama|porte colgante|en roseta|hojas.*carnosas|hojas.*espada/.test(
-      t,
-    )
-  ) {
+  if (identify) {
+    const holes = /agujero|cortes|perforad|rasgad/.test(t);
     const fleshy = /carnosa|gruesa|suculent/.test(t);
     const sword = /espada|cinta|alargada/.test(t);
     const trailing = /colgante|trepadora|enredadera/.test(t);
     const rosette = /roseta/.test(t);
-    const candidates: Candidate[] = fleshy || rosette
+    const candidates: Candidate[] = holes
+      ? [
+          {
+            id: "id-monstera",
+            name: "Monstera deliciosa",
+            scientific: "Monstera deliciosa",
+            art: "stems",
+            color: "#3f6b3a",
+            fit: "Hojas grandes con agujeros y cortes que llegan hasta el borde.",
+            needs: "Mucha luz sin sol directo y un palo para trepar.",
+            light: "Mucha, sin sol directo",
+            water: "Cada 7–10 días",
+            size: "1–2 m",
+            difficulty: 1,
+            pets: "toxica",
+          },
+          {
+            id: "id-adansonii",
+            name: "Monstera adansonii",
+            scientific: "Monstera adansonii",
+            art: "trailing",
+            color: "#4f7a3f",
+            fit: "Hojas más pequeñas, con agujeros ovalados que no llegan al borde.",
+            needs: "Luz indirecta; crece colgando o trepando.",
+            light: "Indirecta",
+            water: "Cada 7 días",
+            size: "Colgante",
+            difficulty: 1,
+            pets: "toxica",
+          },
+          {
+            id: "id-selloum",
+            name: "Filodendro selloum",
+            scientific: "Thaumatophyllum bipinnatifidum",
+            art: "upright",
+            color: "#4a6b3c",
+            fit: "Hojas muy recortadas en dedos, pero sin agujeros en el centro.",
+            needs: "Mucha luz y espacio, porque crece hacia los lados.",
+            light: "Mucha, sin sol fuerte",
+            water: "Cada 7 días",
+            size: "1–1,5 m",
+            difficulty: 1,
+            pets: "toxica",
+          },
+        ]
+      : fleshy || rosette
       ? [
           {
             id: "id-echeveria",
@@ -82,7 +160,7 @@ export function buildContent(
             scientific: "Crassulaceae",
             art: "rosette",
             color: "#6b8e6b",
-            fit: "Roseta compacta de hojas carnosas con pruina.",
+            fit: "Hojas gruesas en forma de rosa, cubiertas de un polvo blanco.",
             needs: "Mucho brillo y riego muy espaciado.",
             light: "Sol suave / muy luminoso",
             water: "Cada 2–3 semanas",
@@ -159,7 +237,7 @@ export function buildContent(
               scientific: "Philodendron hederaceum",
               art: "trailing",
               color: "#4d7042",
-              fit: "Hoja más fina y mate; brote nuevo envuelto en catafilo.",
+              fit: "Hoja más fina y mate; cada hoja nueva sale de una vaina seca.",
               needs: "Sustrato aireado y luz media.",
               light: "Indirecta",
               water: "Cada 7–10 días",
@@ -169,48 +247,45 @@ export function buildContent(
             },
           ];
 
+    const leaves = holes
+      ? "Grandes con agujeros"
+      : fleshy
+        ? "Gruesas"
+        : sword
+          ? "Largas y rígidas"
+          : trailing
+            ? "En forma de corazón"
+            : "Medianas";
+    const growth = holes
+      ? "Trepadora"
+      : trailing
+        ? "Colgante o trepadora"
+        : rosette
+          ? "En forma de rosa"
+          : "Derecha";
     return {
-      species: base.species === "General" ? "Identificación" : base.species,
-      esencia:
-        "Por los rasgos descritos, la clave para identificarla sin confundir especies parecidas está en observar la inserción del pecíolo, el grosor de la hoja y el porte del tallo.",
-      terms: [
-        {
-          word: "pecíolo",
-          plain: "rabillo de la hoja",
-          def: "El tallito que une la lámina de la hoja con el tallo principal.",
-        },
-        {
-          word: "porte",
-          plain: "forma de crecer",
-          def: "Silueta general de la planta: erguida, colgante, en roseta o leñosa.",
-        },
-      ],
-      actions: [
-        "Comprueba si las hojas nacen en roseta basal o a lo largo de un tallo con nudos",
-        "Toca la hoja: si es carnosa y rígida acumula agua; si es fina pierde humedad rápido",
-        "Elige abajo la candidata que coincida para fijar la especie en este hilo",
-      ],
+      title: holes ? "¿Es una monstera?" : "¿Qué planta es?",
+      species: "Especie por identificar",
+      esencia: holes
+        ? "Por las hojas grandes con agujeros, lo más probable es que sea una monstera. Para estar seguro, mira si los cortes llegan hasta el borde de la hoja."
+        : "Por lo que describes, puede ser una de estas plantas. Para distinguirlas, mira cómo nacen las hojas, qué tan gruesas son y cómo crece el tallo.",
+      terms: [],
+      actions: holes
+        ? [
+            "Mira si los cortes de la hoja llegan hasta el borde",
+            "Busca raíces que salgan del tallo, por encima de la tierra",
+            "Elige abajo la que coincida y te digo cómo cuidarla",
+          ]
+        : [
+            "Mira si las hojas nacen todas desde el centro o a lo largo de un tallo",
+            "Toca una hoja: si es gruesa y dura, guarda agua; si es fina, se seca rápido",
+            "Elige abajo la que coincida y te digo cómo cuidarla",
+          ],
       params: [
+        { label: "Hojas", value: leaves },
+        { label: "Forma de crecer", value: growth },
         {
-          label: "Hojas",
-          value: fleshy
-            ? "Carnosas"
-            : sword
-              ? "En espada"
-              : trailing
-                ? "Acorazonadas / finas"
-                : "Anchas / medianas",
-        },
-        {
-          label: "Porte",
-          value: trailing
-            ? "Colgante / trepador"
-            : rosette
-              ? "Roseta"
-              : "Erguido",
-        },
-        {
-          label: "Luz observada",
+          label: "Luz donde está",
           value:
             brief.light === "sol"
               ? "Sol directo"
@@ -221,32 +296,32 @@ export function buildContent(
       ],
       sections: [
         {
-          title: "Qué rasgo desempata las confusiones",
-          body: fleshy || rosette
-            ? "Fíjate si las hojas salen opuestas de a pares en un tallo (Crassula) o en espiral apretada desde el centro (Echeveria)."
-            : sword
-              ? "La sansevieria tiene hojas rígidas y verticales; la cinta forma arcos blandos y suele sacar estolones colgantes."
-              : "El potos tiene pecíolo acanalado y hojas más cerosas; el filodendro muestra una vaina seca (catafilo) en cada nudo nuevo.",
+          title: "Cómo distinguirlas",
+          body: holes
+            ? "La monstera deliciosa tiene hojas grandes y cortes que llegan hasta el borde. La adansonii tiene hojas más pequeñas y agujeros que no llegan al borde. El filodendro selloum tiene la hoja recortada en dedos, pero sin agujeros en el centro."
+            : fleshy || rosette
+              ? "En el árbol de jade las hojas salen de a pares a lo largo de un tallo. En la echeveria salen todas desde el centro, como los pétalos de una rosa."
+              : sword
+                ? "La sansevieria tiene hojas duras y derechas. La cinta tiene hojas blandas que se curvan y le salen plantitas nuevas que cuelgan."
+                : "El potos tiene hojas más gruesas y brillantes. El filodendro tiene hojas más finas, y cada hoja nueva sale de una vaina seca.",
         },
       ],
       cards: [
-        card("hecho", "Rasgos morfológicos aportados para identificación", {
+        card("hecho", holes ? "Hojas grandes, verdes y con agujeros" : "Describiste cómo son sus hojas", {
           scope: "hilo",
           source: "usuario",
         }),
-        card(
-          "supuesto",
-          "Es una planta de interior común sin floración activa",
-          {
-            confidence: "media",
-            detail: "Si tiene flores o espinas, la familia candidata cambia.",
-          },
-        ),
+        card("supuesto", "Es una planta de interior y no tiene flores ahora", {
+          confidence: "media",
+          detail: "Si tiene flores o espinas, las plantas posibles cambian.",
+        }),
       ],
-      milestones: ["Rasgos", "Descarte", "Candidatas"],
+      milestones: ["Hojas", "Descarte", "Posibles plantas"],
       candidates,
     };
   }
+
+  if (brief.goal === "cuidar") return careContent(base.species);
 
   if (/amarill|cloros|mancha|hoja|bicho|pulg|araña/.test(t)) {
     if (/bicho|pulg|araña/.test(t)) {
@@ -571,6 +646,10 @@ export function buildContent(
       ]),
       cards: leafCards,
     };
+  }
+
+  if (/cuid/.test(t) || (careFor(base.species) && /luz|riego|regar|necesita/.test(t))) {
+    return careContent(base.species);
   }
 
   if (/riego|agua|regar|humedad/.test(t)) {
