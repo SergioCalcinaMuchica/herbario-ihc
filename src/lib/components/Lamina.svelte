@@ -270,9 +270,6 @@
         <p class="meta">
           <span><CalendarDays size={11} /> {node.generatedAt}</span>
           <span class="status {node.status}">{statusLabels[node.status]}</span>
-          {#if node.changeNote}
-            <span>{node.changeNote}</span>
-          {/if}
           {#if parentNode}
             <button class="link" onclick={() => openNode(parentNode.id)}>Desde: {parentNode.title}</button>
           {/if}
@@ -315,7 +312,7 @@
           <strong>El contexto cambió:</strong>
           {node.staleReason ?? 'esta respuesta puede estar desactualizada.'}
         </div>
-        <button class="btn tiny primary" onclick={() => recalc(node)}>Recalcular</button>
+        <button class="btn tiny primary" onclick={() => recalc(node)}>Actualizar respuesta</button>
       </div>
     {/if}
 

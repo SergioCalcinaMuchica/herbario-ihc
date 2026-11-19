@@ -91,7 +91,6 @@ export interface KnowledgeNode {
   pinned: boolean;
   status: NodeStatus;
   staleReason?: string;
-  changeNote?: string;
   milestones: string[];
   done: number;
 }

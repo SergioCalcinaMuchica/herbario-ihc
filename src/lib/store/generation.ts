@@ -9,11 +9,6 @@ import { activeBranch, activeNode, branchOf, openNode, switchSession } from "./q
 import { touch } from "./cards";
 
 function applyGenerated(node: KnowledgeNode, content: Generated) {
-  const hadContent = Boolean(node.esencia);
-  const prevVersion = node.version;
-  const prevActions = node.actions.length;
-  const prevEsencia = node.esencia;
-
   node.esencia = content.esencia;
   node.terms = content.terms;
   node.actions = content.actions;
@@ -25,14 +20,6 @@ function applyGenerated(node: KnowledgeNode, content: Generated) {
   node.cards = mergeGenerated(node.cards, content.cards);
   node.status = "lista";
   node.staleReason = undefined;
-  if (hadContent) {
-    const parts: string[] = [`v${prevVersion} → v${prevVersion + 1}`];
-    if (prevEsencia !== content.esencia) parts.push("síntesis actualizada");
-    if (prevActions !== content.actions.length) {
-      parts.push(`${prevActions} → ${content.actions.length} pasos`);
-    }
-    node.changeNote = parts.join(" · ");
-  }
   node.done = node.milestones.length;
   touch(node);
 }

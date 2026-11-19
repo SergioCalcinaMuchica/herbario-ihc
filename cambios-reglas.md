@@ -184,3 +184,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 - En el Árbol, "linaje", "raíz", "bifurcación" y "consulta" pasan a "respuestas", "conversaciones" y "continuaciones".
 - "Supuestos" pasa a "suposiciones", con singular correcto ("1 suposición").
 - Los avisos breves dejan de decir "lámina", "versionado", "ámbito" y "rama".
+
+### Regla 6.4 (con apoyo de la 6.6)
+
+**Regla.** Minimizar la cantidad de texto en prosa y reducir a la mitad las instrucciones en la interfaz. La 6.6 pide no usar jerga técnica.
+
+**Pantalla.** Encabezado de la respuesta, después de "Otra versión" o de actualizar una respuesta desactualizada.
+
+**Problema.** Aparecía la etiqueta "v3 → v4 · síntesis actualizada · 3 → 5 pasos". Usaba lenguaje de programador, el número de versión no permitía volver a la anterior y además subía con acciones que el usuario no relaciona con una versión nueva. El aviso breve "Respuesta actualizada" y el cambio de "Desactualizada" a "Completa" ya muestran que la respuesta cambió.
+
+**Cambio.** Se quitó la etiqueta. El botón "Recalcular" pasa a "Actualizar respuesta".
