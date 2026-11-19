@@ -33,7 +33,7 @@
   <div class="context-head">
     <div>
       <h2><Layers size={15} /> Contexto de esta respuesta</h2>
-      <p>Tus datos, lo que la IA supuso y lo que propuso. Tu mensaje está arriba, siempre visible.</p>
+      <p>Tus datos, lo que la IA supuso y lo que propuso.</p>
     </div>
     <button class="btn tiny ghost" onclick={() => openLedger('lamina')}><ScrollText size={13} /> Ver historial</button>
   </div>

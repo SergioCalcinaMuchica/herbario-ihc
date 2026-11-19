@@ -194,3 +194,18 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Aparecía la etiqueta "v3 → v4 · síntesis actualizada · 3 → 5 pasos". Usaba lenguaje de programador, el número de versión no permitía volver a la anterior y además subía con acciones que el usuario no relaciona con una versión nueva. El aviso breve "Respuesta actualizada" y el cambio de "Desactualizada" a "Completa" ya muestran que la respuesta cambió.
 
 **Cambio.** Se quitó la etiqueta. El botón "Recalcular" pasa a "Actualizar respuesta".
+
+### Regla 6.4 (instrucciones)
+
+**Regla.** Minimizar la cantidad de texto en prosa y reducir a la mitad las instrucciones en la interfaz.
+
+**Pantalla.** Contexto de la respuesta, aviso de la caja de escritura, Historial y Árbol.
+
+**Problema.** Varias instrucciones eran largas o repetían lo que ya se ve: "Tu mensaje está arriba, siempre visible.", "registro, no chat", "Confirmar o corregir versiona y marca dependientes como desactualizadas.", "El borde olivo marca tu posición." y dos frases largas en el aviso de la caja de escritura.
+
+**Cambio.** Cada instrucción queda en una frase corta o se quita:
+- Contexto queda en "Tus datos, lo que la IA supuso y lo que propuso."
+- El encabezado del Historial ya no dice "registro, no chat".
+- El pie del Historial dice "Si corriges una suposición, se marcan las respuestas que dependen de ella."
+- El pie del Árbol dice "Haz clic en una respuesta para abrirla."
+- El aviso de la caja de escritura dice "Lo que generes abre una conversación nueva." o "La respuesta original no cambia."

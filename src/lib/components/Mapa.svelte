@@ -436,7 +436,7 @@
       </div>
 
       <footer class="modal-foot">
-        <span>Abre una respuesta con un clic. El borde olivo marca tu posición.</span>
+        <span>Haz clic en una respuesta para abrirla.</span>
       </footer>
     </div>
   </div>

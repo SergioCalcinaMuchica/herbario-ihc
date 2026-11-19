@@ -133,10 +133,10 @@
       <div class="fork-note" role="status">
         {#if fork}
           <strong><GitFork size={14} /> Conversación nueva desde «{fork.title}»</strong>
-          <span>La respuesta original no cambia. Al generar, esta pregunta queda en una conversación aparte.</span>
+          <span>La respuesta original no cambia.</span>
         {:else}
           <strong><GitFork size={14} /> Estás en una respuesta anterior.</strong>
-          <span>Lo que generes aquí abre una conversación nueva; las demás se conservan.</span>
+          <span>Lo que generes abre una conversación nueva.</span>
         {/if}
       </div>
     {/if}

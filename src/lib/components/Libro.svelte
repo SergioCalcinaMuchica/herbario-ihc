@@ -122,7 +122,7 @@
         <span class="modal-icon"><ScrollText size={17} /></span>
         <div>
           <h2>Historial</h2>
-          <p>{app.session.title} · {allNodes().length} respuestas · registro, no chat</p>
+          <p>{app.session.title} · {allNodes().length} respuestas</p>
         </div>
         <button class="icon-btn" aria-label="Cerrar historial" onclick={close}><X size={18} /></button>
       </header>
@@ -322,7 +322,7 @@
       {/if}
 
       <footer class="ledger-foot">
-        <span>Confirmar o corregir versiona y marca dependientes como desactualizadas.</span>
+        <span>Si corriges una suposición, se marcan las respuestas que dependen de ella.</span>
       </footer>
     </div>
   </div>
