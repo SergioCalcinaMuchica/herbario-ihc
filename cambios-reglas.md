@@ -273,3 +273,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Al tocar el botón, el aviso de arriba desaparecía y el contenido cambiaba sin ninguna marca. La única señal era el aviso breve de abajo, lejos de donde el usuario miraba y por pocos segundos.
 
 **Cambio.** En el mismo lugar del aviso aparece uno verde que dice "La respuesta se actualizó con tus cambios." Se queda hasta que el usuario lo cierra o abre otra respuesta.
+
+### Regla 8.8
+
+**Regla.** No obligar al usuario a pensar detenidamente en la herramienta en lugar de su tarea principal.
+
+**Pantalla.** Historial, menú "Más" o "Ajustar" de cada nota.
+
+**Problema.** El botón "Se aplica a: esta conversación" cambiaba de opción con cada clic, en ciclo. El usuario no veía las tres opciones juntas y tenía que tocar varias veces y adivinar cuál venía después.
+
+**Cambio.** Bajo el título "Se aplica a" se muestran las tres opciones, "Esta conversación", "Esta planta" y "Siempre", con la elegida marcada con un visto. Un clic elige directamente la que se quiere.

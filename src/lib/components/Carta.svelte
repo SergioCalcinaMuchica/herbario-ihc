@@ -16,7 +16,7 @@
     Trash,
     X
   } from '@lucide/svelte';
-  import type { Card } from '#lib/types';
+  import type { Card, Scope } from '#lib/types';
   import {
     activeNode,
     allNodesEverywhere,
@@ -24,8 +24,8 @@
     correctCard,
     editCard,
     ignoreCard,
-    nextScope,
     removeCard,
+    setScope,
     togglePin,
     toast,
     scopeLabel
@@ -36,6 +36,10 @@
   let editing = $state<false | 'edit' | 'correct'>(false);
   let draft = $state('');
   let confirmingRemove = $state(false);
+
+  // Las tres opciones de alcance se muestran juntas, con la elegida marcada.
+  const scopes: Scope[] = ['hilo', 'especie', 'global'];
+  const scopeNames: Record<Scope, string> = { hilo: 'Esta conversación', especie: 'Esta planta', global: 'Siempre' };
 
   const labels: Record<Card['type'], string> = {
     hecho: 'Dato',
@@ -149,7 +153,14 @@
           <div class="more-menu">
             <button class="btn tiny ghost" onclick={() => begin('correct')}><Pencil size={12} /> Corregir</button>
             <button class="btn tiny ghost" onclick={() => ignoreCard(card)}><EyeOff size={12} /> Ignorar</button>
-            <button class="btn tiny ghost" onclick={() => nextScope(card)}><Globe size={12} /> Se aplica a: {scopeLabel[card.scope]}</button>
+            <div class="scope-pick" role="group" aria-label="Se aplica a">
+              <span class="scope-title"><Globe size={12} /> Se aplica a</span>
+              {#each scopes as s (s)}
+                <button class="btn tiny ghost" class:on={card.scope === s} aria-pressed={card.scope === s} onclick={() => setScope(card, s)}>
+                  {#if card.scope === s}<Check size={12} />{/if} {scopeNames[s]}
+                </button>
+              {/each}
+            </div>
             <button class="btn tiny ghost" onclick={() => removeCard(card)}><Trash size={12} /> Quitar</button>
           </div>
         </details>
@@ -162,7 +173,14 @@
             <ChevronDown class="chevron" size={12} />
           </summary>
           <div class="more-menu">
-            <button class="btn tiny ghost" onclick={() => nextScope(card)}><Globe size={12} /> Se aplica a: {scopeLabel[card.scope]}</button>
+            <div class="scope-pick" role="group" aria-label="Se aplica a">
+              <span class="scope-title"><Globe size={12} /> Se aplica a</span>
+              {#each scopes as s (s)}
+                <button class="btn tiny ghost" class:on={card.scope === s} aria-pressed={card.scope === s} onclick={() => setScope(card, s)}>
+                  {#if card.scope === s}<Check size={12} />{/if} {scopeNames[s]}
+                </button>
+              {/each}
+            </div>
             <button class="btn tiny ghost" onclick={() => removeCard(card)}><Trash size={12} /> Descartar</button>
           </div>
         </details>
