@@ -6,6 +6,7 @@
     CalendarDays,
     Check,
     ChevronDown,
+    CircleCheck,
     CircleExclamationPoint,
     CirclePause,
     Download,
@@ -90,6 +91,8 @@
   const percent = $derived(Math.min(100, Math.round((done / total) * 100)));
 
   let openTerm = $state<Term | null>(null);
+  // Respuesta recién actualizada: el aviso verde se muestra en el lugar del aviso de desactualizada.
+  let updatedId = $state('');
   let lastNodeId = $state('');
 
   const doors = [
@@ -318,7 +321,13 @@
           <strong>El contexto cambió:</strong>
           {node.staleReason ?? 'esta respuesta puede estar desactualizada.'}
         </div>
-        <button class="btn tiny primary" onclick={() => recalc(node)}>Actualizar respuesta</button>
+        <button class="btn tiny primary" onclick={() => { recalc(node); updatedId = node.id; }}>Actualizar respuesta</button>
+      </div>
+    {:else if updatedId === node.id}
+      <div class="banner ok" role="status">
+        <CircleCheck size={17} />
+        <div><strong>La respuesta se actualizó con tus cambios.</strong></div>
+        <button class="icon-btn mini" aria-label="Cerrar aviso" onclick={() => (updatedId = '')}><X size={14} /></button>
       </div>
     {/if}
 

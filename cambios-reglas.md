@@ -263,3 +263,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los pasos eran una lista numerada que no se podía marcar. Son tareas que el usuario hace con la planta en la mano y en distintos momentos, así que al volver tenía que recordar por cuál iba.
 
 **Cambio.** Cada paso tiene una casilla. El paso marcado se ve tachado y más claro, y junto al título dice cuántos van, por ejemplo "1 de 4 hechos". Lo marcado se guarda y sigue ahí al volver a la respuesta. Si la respuesta se vuelve a generar, las marcas se borran porque los pasos pueden cambiar.
+
+### Regla 8.2
+
+**Regla.** Hacer que los cambios importantes en pantalla sean muy evidentes, para vencer la ceguera al cambio.
+
+**Pantalla.** Respuesta desactualizada, después de tocar "Actualizar respuesta".
+
+**Problema.** Al tocar el botón, el aviso de arriba desaparecía y el contenido cambiaba sin ninguna marca. La única señal era el aviso breve de abajo, lejos de donde el usuario miraba y por pocos segundos.
+
+**Cambio.** En el mismo lugar del aviso aparece uno verde que dice "La respuesta se actualizó con tus cambios." Se queda hasta que el usuario lo cierra o abre otra respuesta.

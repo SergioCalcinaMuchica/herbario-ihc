@@ -171,6 +171,13 @@
 }
 .banner > svg { width: 17px; height: 17px; color: var(--ochre); }
 .banner .btn { margin-left: auto; }
+.banner.ok {
+  border-color: color-mix(in srgb, var(--moss) 35%, transparent);
+  background: var(--moss-soft);
+  color: var(--moss-dark);
+}
+.banner.ok > svg { color: var(--moss); }
+.banner.ok .icon-btn { margin-left: auto; }
 .banner-actions { display: flex; gap: 6px; margin-left: auto; }
 
 .ask {
