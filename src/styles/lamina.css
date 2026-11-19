@@ -172,11 +172,11 @@
 .banner > svg { width: 17px; height: 17px; color: var(--ochre); }
 .banner .btn { margin-left: auto; }
 .banner.ok {
-  border-color: color-mix(in srgb, var(--moss) 35%, transparent);
-  background: var(--moss-soft);
-  color: var(--moss-dark);
+  border-color: color-mix(in srgb, var(--olive) 35%, transparent);
+  background: var(--olive-soft);
+  color: var(--olive-dark);
 }
-.banner.ok > svg { color: var(--moss); }
+.banner.ok > svg { color: var(--olive); }
 .banner.ok .icon-btn { margin-left: auto; }
 .banner-actions { display: flex; gap: 6px; margin-left: auto; }
 
@@ -320,10 +320,10 @@
   align-items: start;
   cursor: pointer;
 }
-.actions li input { width: 18px; height: 18px; margin: 4px 0 0; accent-color: var(--moss); cursor: pointer; }
+.actions li input { width: 18px; height: 18px; margin: 4px 0 0; accent-color: var(--olive); cursor: pointer; }
 .actions li.hecho label > span:last-child { text-decoration: line-through; color: var(--muted); }
 .actions li.hecho .num { opacity: 0.55; }
-.actions .steps-count { margin-left: 8px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--moss-dark); }
+.actions .steps-count { margin-left: 8px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--olive-dark); }
 .actions .num {
   display: grid;
   place-items: center;
