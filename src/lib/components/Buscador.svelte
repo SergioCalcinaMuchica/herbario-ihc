@@ -41,6 +41,25 @@
     score: number;
   }
 
+  /** Divide un texto en trozos y marca los que coinciden con lo buscado, para resaltarlos. */
+  function marks(text: string) {
+    const q = app.searchQuery.trim().toLowerCase();
+    if (!q) return [{ text, hit: false }];
+    const out: { text: string; hit: boolean }[] = [];
+    let rest = text;
+    while (rest) {
+      const at = rest.toLowerCase().indexOf(q);
+      if (at < 0) {
+        out.push({ text: rest, hit: false });
+        break;
+      }
+      if (at > 0) out.push({ text: rest.slice(0, at), hit: false });
+      out.push({ text: rest.slice(at, at + q.length), hit: true });
+      rest = rest.slice(at + q.length);
+    }
+    return out;
+  }
+
   function excerpt(text: string, q: string) {
     if (!q) return text.slice(0, 110) + (text.length > 110 ? '…' : '');
     const at = text.toLowerCase().indexOf(q);
@@ -207,9 +226,9 @@
         {:else}
           {#each results as r (r.kind + r.id)}
             <button class="result" onclick={() => pick(r)}>
-              <span class="t">{r.title}</span>
+              <span class="t">{#each marks(r.title) as m, i (i)}{#if m.hit}<mark>{m.text}</mark>{:else}{m.text}{/if}{/each}</span>
               <span class="s">{r.sub}</span>
-              <span class="snip">{r.snippet}</span>
+              <span class="snip">{#each marks(r.snippet) as m, i (i)}{#if m.hit}<mark>{m.text}</mark>{:else}{m.text}{/if}{/each}</span>
               <span class="kind" class:carta={r.kind === 'carta'}>
                 {#if r.kind === 'respuesta'}<FileText size={10} />{:else}<StickyNote size={10} />{/if}
                 {r.kind === 'carta' ? 'Nota' : 'Respuesta'}

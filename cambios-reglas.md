@@ -219,3 +219,15 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** El texto debajo del título estaba centrado y ocupaba dos líneas, lo que obliga a buscar el inicio de la segunda línea. Además decía "botánica" y "prompt".
 
 **Cambio.** El texto queda en una sola línea: "No necesitas saber de plantas. Cuéntame lo que ves y te pregunto lo que falte."
+
+## Capítulo 7
+
+### Regla 7.5
+
+**Regla.** Mostrar los términos de búsqueda introducidos en la página de resultados.
+
+**Pantalla.** Buscar.
+
+**Problema.** Los resultados mostraban un trozo del texto, pero la palabra buscada no se distinguía. El usuario tenía que leer cada línea para saber dónde aparecía y por qué salió ese resultado.
+
+**Cambio.** La palabra buscada se resalta con fondo ocre y en negrita en el título y en el trozo de texto de cada resultado.
