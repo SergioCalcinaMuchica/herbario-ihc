@@ -221,7 +221,7 @@
         {#if results.length === 0}
           <div class="results-empty">
             <Search size={22} />
-            <p>Nada con esos filtros. Prueba con menos facetas.</p>
+            <p>No hay resultados. Prueba con menos filtros.</p>
           </div>
         {:else}
           {#each results as r (r.kind + r.id)}
