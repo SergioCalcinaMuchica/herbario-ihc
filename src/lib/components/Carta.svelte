@@ -139,7 +139,7 @@
         {/if}
       {:else if card.type === 'supuesto'}
         {#if card.state === 'sin_confirmar'}
-          <button class="btn tiny primary" onclick={() => confirmCard(card)}><Check size={12} /> Confirmar</button>
+          <button class="btn tiny" onclick={() => confirmCard(card)}><Check size={12} /> Confirmar</button>
         {/if}
         <details class="more">
           <summary class="btn tiny ghost more-toggle">

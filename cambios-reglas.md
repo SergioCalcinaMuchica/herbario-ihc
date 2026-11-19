@@ -241,3 +241,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Las respuestas llegan a tres niveles (respuesta, continuación y continuación de la continuación), pero la barra superior solo mostraba "conversación › respuesta actual". Se saltaba los niveles del medio y no se podía hacer clic en ninguno.
 
 **Cambio.** La barra superior muestra el camino completo, "conversación › respuestas anteriores › respuesta actual". Cada respuesta anterior está subrayada y lleva a ella con un clic. La actual va en negrita.
+
+### Regla 7.13
+
+**Regla.** No poner llamadas a la acción que compitan entre sí en una sola página.
+
+**Pantalla.** Respuesta, panel izquierdo e Historial.
+
+**Problema.** En la pantalla de la respuesta había hasta seis botones rojos a la vez: "Nueva", "Confirmar", tres "Elegir esta" y "Generar". Con el mismo peso, ninguno destacaba como la acción principal.
+
+**Cambio.** "Nueva", "Confirmar" y "Elegir esta" pasan a botones normales con borde. Solo "Generar" queda rojo, y se enciende cuando hay algo escrito. Los botones que aparecen solos en un aviso, como "Actualizar respuesta" o "Reanudar", siguen rojos porque en ese momento son la única acción.

@@ -58,7 +58,7 @@
 
     {#if !editing}
       <div class="bar-actions">
-        <button class="btn tiny primary" onclick={() => confirmCard(critical[0])}>
+        <button class="btn tiny" onclick={() => confirmCard(critical[0])}>
           <Check size={13} /> Confirmar
         </button>
         <button class="btn tiny" onclick={startEdit}><Pencil size={12} /> Corregir</button>
