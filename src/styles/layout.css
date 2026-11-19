@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  min-width: 0;
   padding: 0 18px 0 16px;
   border-bottom: 1px solid var(--line);
   background: color-mix(in srgb, var(--panel) 82%, transparent);
@@ -83,6 +84,7 @@
 }
 
 .crumbs {
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -106,6 +108,28 @@
   background: var(--panel);
   border-color: var(--line);
 }
+.crumbs strong,
+.crumbs .crumb-link {
+  min-width: 0;
+  max-width: 34ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 4px 9px;
+  border: 1px solid transparent;
+  border-radius: 99px;
+}
+.crumbs .crumb-link {
+  background: none;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.crumbs strong,
+.crumbs > span:not(.sep) { flex-shrink: 0; }
+.crumbs .crumb-link:hover { background: var(--panel); border-color: var(--line); color: var(--ink); }
 .crumbs .sep { display: grid; place-items: center; color: var(--line-strong); }
 .crumbs .sep svg { width: 13px; height: 13px; }
 

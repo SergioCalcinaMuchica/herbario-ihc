@@ -10,6 +10,7 @@
   import {
     activeBranch,
     activeNode,
+    allNodes,
     app,
     loadStressCase,
     newConsultation,
@@ -23,6 +24,16 @@
 
   const branch = $derived(activeBranch());
   const node = $derived(activeNode());
+  // Respuestas anteriores de la actual, de la más antigua a la más cercana, para las migas de pan.
+  const ancestors = $derived.by(() => {
+    const out = [];
+    let parent = allNodes().find((n) => n.id === node?.parentId);
+    while (parent) {
+      out.unshift(parent);
+      parent = allNodes().find((n) => n.id === parent?.parentId);
+    }
+    return out;
+  });
   let hydrated = $state(false);
   let quotaWarned = false;
 
@@ -114,7 +125,11 @@
     </div>
     <nav class="crumbs" aria-label="Dónde estás">
       {#if branch}<span>{branch.name}</span>{/if}
-      {#if node}<span class="sep"><ChevronRight size={13} /></span><span>{node.title}</span>{/if}
+      {#each ancestors as a (a.id)}
+        <span class="sep"><ChevronRight size={13} /></span>
+        <button class="crumb-link" title={a.title} onclick={() => openNode(a.id)}>{a.title}</button>
+      {/each}
+      {#if node}<span class="sep"><ChevronRight size={13} /></span><strong>{node.title}</strong>{/if}
     </nav>
     <div class="top-actions">
       <button class="btn ghost" onclick={openSearch} aria-label="Buscar (tecla /)">

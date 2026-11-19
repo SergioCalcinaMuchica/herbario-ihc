@@ -231,3 +231,13 @@ Reglas tomadas de `documentacion/reglas.typ` (Johnson, *Designing with the Mind 
 **Problema.** Los resultados mostraban un trozo del texto, pero la palabra buscada no se distinguía. El usuario tenía que leer cada línea para saber dónde aparecía y por qué salió ese resultado.
 
 **Cambio.** La palabra buscada se resalta con fondo ocre y en negrita en el título y en el trozo de texto de cada resultado.
+
+### Regla 7.8
+
+**Regla.** Proveer migas de pan como recordatorios en jerarquías que tengan más de dos niveles de profundidad.
+
+**Pantalla.** Barra superior, en una respuesta que continúa a otra.
+
+**Problema.** Las respuestas llegan a tres niveles (respuesta, continuación y continuación de la continuación), pero la barra superior solo mostraba "conversación › respuesta actual". Se saltaba los niveles del medio y no se podía hacer clic en ninguno.
+
+**Cambio.** La barra superior muestra el camino completo, "conversación › respuestas anteriores › respuesta actual". Cada respuesta anterior está subrayada y lleva a ella con un clic. La actual va en negrita.
