@@ -3,6 +3,7 @@
 // y la misma ficha cambia en su lugar en vez de abrir un mensaje nuevo.
 import type { Candidate, KnowledgeNode, Param } from "../types";
 import { FLOWERS, LOW_LIGHT, SAFE, SAFE_SUN, SUN } from "../data/candidates";
+import { careFor } from "./cuidados";
 
 export interface Opcion {
   id: string;
@@ -63,6 +64,13 @@ export function applyParamOption(node: KnowledgeNode, index: number, optionId: s
   const toxic = /t[óo]xic/i.test(p.value);
   const unknown = /confirmar/i.test(p.value);
   let note = "";
+
+  // Si conocemos la planta, «¿Por qué?» da la razón propia de esa planta.
+  const care = careFor(node.species);
+  if (kind && optionId === "porque" && care) {
+    p.note = care.porQue[kind];
+    return;
+  }
 
   if (kind === "luz") {
     if (optionId === "porque")

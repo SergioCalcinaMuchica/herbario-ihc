@@ -34,7 +34,8 @@ function careContent(species: string): Generated {
     terms: [],
     actions: p.actions,
     params: careParams(p),
-    sections: [POR_QUE(p.porQue), VIGILAR(p.vigilar)],
+    // El porqué de cada dato está en «Preguntar → ¿Por qué?» de ese dato; aquí solo queda qué vigilar.
+    sections: [VIGILAR(p.vigilar)],
     cards: known
       ? [card("supuesto", "La planta está en interior", { confidence: "media" })]
       : [

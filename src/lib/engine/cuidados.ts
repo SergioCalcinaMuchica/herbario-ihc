@@ -9,7 +9,8 @@ export interface CareProfile {
   tierra: string;
   maceta: string;
   mascotas: "Segura" | "Tóxica" | "Por confirmar";
-  porQue: string;
+  /** El porqué de cada dato, en el mismo orden que los datos de cuidado. */
+  porQue: { luz: string; riego: string; tierra: string; maceta: string; mascotas: string };
   actions: string[];
   vigilar: string;
 }
@@ -24,8 +25,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Suelta",
     maceta: "Con agujeros abajo",
     mascotas: "Tóxica",
-    porQue:
-      "Necesita luz indirecta porque el sol directo le quema las hojas. Riega cuando los primeros 2 cm de tierra estén secos, porque con la tierra siempre mojada las raíces se pudren. La tierra suelta deja pasar el agua y el aire hasta las raíces. La maceta necesita agujeros para que salga el agua que sobra. Es tóxica si un gato o un perro muerde sus hojas, así que conviene colgarla fuera de su alcance.",
+    porQue: {
+      luz: "Necesita luz indirecta porque el sol directo le quema las hojas.",
+      riego: "Riega cuando los primeros 2 cm de tierra estén secos, porque con la tierra siempre mojada las raíces se pudren.",
+      tierra: "La tierra suelta deja pasar el agua y el aire hasta las raíces.",
+      maceta: "La maceta necesita agujeros para que salga el agua que sobra.",
+      mascotas: "Es tóxica si un gato o un perro muerde sus hojas, así que conviene colgarla fuera de su alcance.",
+    },
     actions: [
       "Ponla cerca de una ventana donde no le dé el sol directo",
       "Toca la tierra antes de regar y riega solo si está seca arriba",
@@ -42,8 +48,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Suelta, con trozos de corteza",
     maceta: "Con agujeros y un palo para trepar",
     mascotas: "Tóxica",
-    porQue:
-      "Con mucha luz indirecta salen hojas grandes con agujeros; con poca luz salen pequeñas y enteras. Riega cuando la mitad de arriba de la tierra esté seca, porque sus raíces se pudren si siempre están mojadas. Los trozos de corteza dejan pasar el aire hasta las raíces. Un palo le sirve para trepar, como hace en la naturaleza, y así crece más derecha. Es tóxica si un gato o un perro muerde sus hojas.",
+    porQue: {
+      luz: "Con mucha luz indirecta salen hojas grandes con agujeros; con poca luz salen pequeñas y enteras.",
+      riego: "Riega cuando la mitad de arriba de la tierra esté seca, porque sus raíces se pudren si siempre están mojadas.",
+      tierra: "Los trozos de corteza dejan pasar el aire hasta las raíces.",
+      maceta: "Un palo le sirve para trepar, como hace en la naturaleza, y así crece más derecha.",
+      mascotas: "Es tóxica si un gato o un perro muerde sus hojas.",
+    },
     actions: [
       "Ubícala a uno o dos metros de una ventana luminosa",
       "Riega a fondo y espera a que se seque la mitad de la tierra",
@@ -60,8 +71,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Suelta, con trozos de corteza",
     maceta: "Con agujeros, colgada o con palo",
     mascotas: "Tóxica",
-    porQue:
-      "El sol directo quema sus hojas finas, por eso necesita luz indirecta. Riega cuando los primeros 2 cm de tierra estén secos, porque el exceso de agua pudre sus raíces. La corteza mantiene la tierra suelta y con aire. Colgada o con un palo, sus tallos largos no se quiebran. Es tóxica si un gato o un perro muerde sus hojas.",
+    porQue: {
+      luz: "El sol directo quema sus hojas finas, por eso necesita luz indirecta.",
+      riego: "Riega cuando los primeros 2 cm de tierra estén secos, porque el exceso de agua pudre sus raíces.",
+      tierra: "La corteza mantiene la tierra suelta y con aire.",
+      maceta: "Colgada o con un palo, sus tallos largos no se quiebran.",
+      mascotas: "Es tóxica si un gato o un perro muerde sus hojas.",
+    },
     actions: [
       "Ponla cerca de una ventana sin sol directo",
       "Riega cuando la tierra esté seca arriba",
@@ -78,8 +94,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Suelta",
     maceta: "Grande y con agujeros",
     mascotas: "Tóxica",
-    porQue:
-      "Con mucha luz sus hojas crecen grandes y recortadas; el sol fuerte del mediodía las quema. Riega cuando los primeros 3 cm de tierra estén secos, porque no le gusta estar encharcada. La tierra suelta deja respirar a las raíces. Necesita una maceta grande porque es una planta pesada y ancha. Es tóxica si un gato o un perro muerde sus hojas.",
+    porQue: {
+      luz: "Con mucha luz sus hojas crecen grandes y recortadas; el sol fuerte del mediodía las quema.",
+      riego: "Riega cuando los primeros 3 cm de tierra estén secos, porque no le gusta estar encharcada.",
+      tierra: "La tierra suelta deja respirar a las raíces.",
+      maceta: "Necesita una maceta grande porque es una planta pesada y ancha.",
+      mascotas: "Es tóxica si un gato o un perro muerde sus hojas.",
+    },
     actions: [
       "Déjale espacio a los lados, porque sus hojas se abren mucho",
       "Riega cuando la tierra esté seca arriba",
@@ -96,8 +117,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Para cactus, que seque rápido",
     maceta: "Pesada y con agujeros",
     mascotas: "Tóxica",
-    porQue:
-      "Aguanta poca luz y también sol suave, por eso sirve para casi cualquier rincón. Guarda agua en sus hojas, así que se riega poco. La tierra para cactus se seca rápido y evita que las raíces se pudran. Una maceta pesada evita que se caiga, porque sus hojas son altas. Puede causar vómitos si un gato o un perro la muerde.",
+    porQue: {
+      luz: "Aguanta poca luz y también sol suave, por eso sirve para casi cualquier rincón.",
+      riego: "Guarda agua en sus hojas, así que se riega poco.",
+      tierra: "La tierra para cactus se seca rápido y evita que las raíces se pudran.",
+      maceta: "Una maceta pesada evita que se caiga, porque sus hojas son altas.",
+      mascotas: "Puede causar vómitos si un gato o un perro la muerde.",
+    },
     actions: [
       "Riega solo cuando la tierra esté seca del todo",
       "En invierno riega una vez al mes",
@@ -114,8 +140,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Que guarde algo de humedad",
     maceta: "Con agujeros abajo",
     mascotas: "Segura",
-    porQue:
-      "El sol directo le quema y decolora las hojas, por eso necesita luz suave. Le gusta la tierra un poco húmeda; si se seca, los bordes de las hojas se ponen marrones. La tierra debe guardar algo de humedad, pero el agua que sobra tiene que salir por los agujeros. Necesita aire húmedo, así que conviene ponerla lejos de estufas y del aire acondicionado. Es segura para gatos y perros.",
+    porQue: {
+      luz: "El sol directo le quema y decolora las hojas, por eso necesita luz suave.",
+      riego: "Le gusta la tierra un poco húmeda; si se seca, los bordes de las hojas se ponen marrones.",
+      tierra: "La tierra debe guardar algo de humedad, pero sin quedar encharcada.",
+      maceta: "La maceta necesita agujeros para que salga el agua que sobra. Ponla lejos de estufas y del aire acondicionado, porque necesita aire húmedo.",
+      mascotas: "Es segura para gatos y perros.",
+    },
     actions: [
       "Riega con agua que haya reposado un día",
       "Pon debajo un plato con piedras y agua para dar humedad",
@@ -132,8 +163,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Muy suelta, con corteza",
     maceta: "Con agujeros, justa para sus raíces",
     mascotas: "Tóxica",
-    porQue:
-      "Con buena luz indirecta da más flores; el sol directo le quema las hojas. Riega cuando la parte de arriba de la tierra esté seca. Sus raíces necesitan aire, por eso la tierra debe ser muy suelta. En una maceta justa florece más que en una grande. Es tóxico si un gato o un perro lo muerde.",
+    porQue: {
+      luz: "Con buena luz indirecta da más flores; el sol directo le quema las hojas.",
+      riego: "Riega cuando la parte de arriba de la tierra esté seca.",
+      tierra: "Sus raíces necesitan aire, por eso la tierra debe ser muy suelta.",
+      maceta: "En una maceta justa florece más que en una grande.",
+      mascotas: "Es tóxico si un gato o un perro lo muerde.",
+    },
     actions: [
       "Ponlo cerca de una ventana luminosa sin sol directo",
       "Riega cuando los primeros 2 cm de tierra estén secos",
@@ -150,8 +186,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Siempre algo húmeda",
     maceta: "Con agujeros, mejor colgada",
     mascotas: "Segura",
-    porQue:
-      "Con sol directo sus hojas se secan; con luz indirecta se mantiene verde. Su tierra no debe secarse del todo, porque pierde hojas muy rápido. Necesita tierra que guarde humedad, pero que deje salir el agua que sobra. Colgado, sus hojas caen sin doblarse. Es seguro para gatos y perros.",
+    porQue: {
+      luz: "Con sol directo sus hojas se secan; con luz indirecta se mantiene verde.",
+      riego: "Su tierra no debe secarse del todo, porque pierde hojas muy rápido.",
+      tierra: "Necesita tierra que guarde humedad, pero que deje salir el agua que sobra.",
+      maceta: "Colgado, sus hojas caen sin doblarse.",
+      mascotas: "Es seguro para gatos y perros.",
+    },
     actions: [
       "Toca la tierra cada dos o tres días y riega si está seca",
       "Rocía las hojas con agua cuando el aire esté seco",
@@ -168,8 +209,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Común y suelta",
     maceta: "Con agujeros, puede ir colgada",
     mascotas: "Segura",
-    porQue:
-      "Crece bien con luz indirecta y aguanta rincones con poca luz. Sus raíces gruesas guardan agua, así que basta con regar cuando la tierra esté seca arriba. Una tierra común y suelta es suficiente. Colgada, las plantitas nuevas que le salen caen y se pueden plantar aparte. Es segura para gatos y perros.",
+    porQue: {
+      luz: "Crece bien con luz indirecta y aguanta rincones con poca luz.",
+      riego: "Sus raíces gruesas guardan agua, así que basta con regar cuando la tierra esté seca arriba.",
+      tierra: "Una tierra común y suelta es suficiente.",
+      maceta: "Colgada, las plantitas nuevas que le salen caen y se pueden plantar aparte.",
+      mascotas: "Es segura para gatos y perros.",
+    },
     actions: [
       "Riega una vez por semana",
       "Corta las puntas secas con una tijera limpia",
@@ -186,8 +232,13 @@ const CARE: Record<string, CareProfile> = {
     tierra: "Corteza, no tierra común",
     maceta: "Transparente y con agujeros",
     mascotas: "Segura",
-    porQue:
-      "Necesita mucha luz, pero el sol directo quema sus hojas. Se riega sumergiendo la maceta 10 minutos y dejándola escurrir, para que las raíces tomen agua sin quedar mojadas. En la naturaleza sus raíces viven pegadas a los árboles, por eso necesitan corteza. En una maceta transparente se ve si las raíces están verdes, con agua, o plateadas, sin agua. Es segura para gatos y perros.",
+    porQue: {
+      luz: "Necesita mucha luz, pero el sol directo quema sus hojas.",
+      riego: "Se riega sumergiendo la maceta 10 minutos y dejándola escurrir, para que las raíces tomen agua sin quedar mojadas.",
+      tierra: "En la naturaleza sus raíces viven pegadas a los árboles, por eso necesitan corteza.",
+      maceta: "En una maceta transparente se ve si las raíces están verdes, con agua, o plateadas, sin agua.",
+      mascotas: "Es segura para gatos y perros.",
+    },
     actions: [
       "Sumerge la maceta en agua 10 minutos cuando las raíces se vean plateadas",
       "Deja escurrir bien antes de devolverla a su lugar",
@@ -207,8 +258,13 @@ const GENERIC: CareProfile = {
   tierra: "Suelta",
   maceta: "Con agujeros abajo",
   mascotas: "Por confirmar",
-  porQue:
-    "Casi todas las plantas de interior prefieren luz sin sol directo, porque el sol fuerte quema las hojas. Regar solo cuando la tierra está seca arriba evita que las raíces se pudran. La tierra suelta deja pasar el agua y el aire. La maceta necesita agujeros para que salga el agua que sobra.",
+  porQue: {
+    luz: "Casi todas las plantas de interior prefieren luz sin sol directo, porque el sol fuerte quema las hojas.",
+    riego: "Regar solo cuando la tierra está seca arriba evita que las raíces se pudran.",
+    tierra: "La tierra suelta deja pasar el agua y el aire hasta las raíces.",
+    maceta: "La maceta necesita agujeros para que salga el agua que sobra.",
+    mascotas: "No sé qué planta es, así que no puedo decir si es tóxica. Dime su nombre para revisarlo.",
+  },
   actions: [
     "Ponla cerca de una ventana donde no le dé el sol directo",
     "Toca la tierra antes de regar y riega solo si está seca arriba",

@@ -146,7 +146,6 @@ export function chooseCandidate(c: Candidate) {
         ],
     sections: care
       ? [
-          { title: "Por qué", body: care.porQue },
           { title: "Qué vigilar", body: care.vigilar },
         ]
       : [
