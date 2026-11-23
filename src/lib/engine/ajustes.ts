@@ -121,7 +121,7 @@ export function applyParamOption(node: KnowledgeNode, index: number, optionId: s
 export const CAND_OPTIONS: Opcion[] = [
   { id: "pequena", label: "Una más pequeña" },
   { id: "segura", label: "Una segura para mascotas" },
-  { id: "quitar", label: "Quitar esta" },
+  { id: "otra", label: "Otra en su lugar" },
 ];
 
 const POOL: Candidate[] = [...LOW_LIGHT, ...SAFE, ...SUN, ...FLOWERS, ...SAFE_SUN];
@@ -138,17 +138,17 @@ function maxSize(c: Candidate): number {
 export function applyCandOption(node: KnowledgeNode, index: number, optionId: string): boolean {
   const list = node.candidates ?? [];
   const current = list[index];
-  if (optionId === "quitar") {
-    node.candidates = list.filter((_, i) => i !== index);
-    return true;
-  }
-  const shown = new Set(list.map((c) => c.name));
-  const pick = POOL.find(
-    (c) =>
-      !shown.has(c.name) &&
-      (optionId === "pequena" ? maxSize(c) < maxSize(current) : c.pets === "segura"),
-  );
+  // No se repiten las que están a la vista ni las que el usuario ya cambió.
+  const seen = new Set([...list.map((c) => c.name), ...(node.discarded ?? [])]);
+  const fits = (c: Candidate) =>
+    optionId === "pequena"
+      ? maxSize(c) < maxSize(current)
+      : optionId === "segura"
+        ? c.pets === "segura"
+        : c.pets === "segura" || c.pets === current.pets; // «Otra en su lugar» no empeora la seguridad
+  const pick = POOL.find((c) => !seen.has(c.name) && fits(c));
   if (!pick) return false;
+  node.discarded = [...(node.discarded ?? []), current.name];
   node.candidates = list.map((c, i) => (i === index ? { ...pick } : c));
   return true;
 }

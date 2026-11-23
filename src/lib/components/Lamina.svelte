@@ -109,8 +109,8 @@
   let changed = $state('');
 
   function snapshot(n: KnowledgeNode) {
-    const { esencia, params, actions, candidates, replaced, stepsDone } = n;
-    return JSON.stringify({ esencia, params, actions, candidates, replaced, stepsDone });
+    const { esencia, params, actions, candidates, replaced, stepsDone, discarded } = n;
+    return JSON.stringify({ esencia, params, actions, candidates, replaced, stepsDone, discarded });
   }
 
   /** Aplica un ajuste guardando cómo estaba antes. Si el ajuste no pudo hacerse, avisa y no cambia nada. */
@@ -133,6 +133,7 @@
     n.candidates = prev.candidates;
     n.replaced = prev.replaced;
     n.stepsDone = prev.stepsDone ?? [];
+    n.discarded = prev.discarded ?? [];
     undo = null;
     changed = '';
   }

@@ -97,6 +97,8 @@ export interface KnowledgeNode {
   done: number;
   /** Pasos de «Qué hacer» que el usuario marcó como hechos (por posición). */
   stepsDone?: number[];
+  /** Plantas candidatas que el usuario cambió por otra, para no volver a mostrarlas. */
+  discarded?: string[];
 }
 
 export interface Branch {
