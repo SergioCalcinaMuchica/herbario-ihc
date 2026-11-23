@@ -134,6 +134,15 @@ function maxSize(c: Candidate): number {
   return /\bm\b/.test(c.size) && !/cm/.test(c.size) ? max * 100 : max;
 }
 
+/** Cuánta luz pide la planta, de 1 (poca) a 3 (sol directo), para cambiarla solo por otras de luz parecida. */
+function lightLevel(c: Candidate): number {
+  const l = c.light.toLowerCase();
+  if (/sol/.test(l)) return 3;
+  if (/poca o media/.test(l)) return 1.5;
+  if (/poca/.test(l)) return 1;
+  return 2; // media o indirecta
+}
+
 /** Cambia una candidata según la opción. Devuelve false si no hay otra planta que cumpla. */
 export function applyCandOption(node: KnowledgeNode, index: number, optionId: string): boolean {
   const list = node.candidates ?? [];
@@ -146,7 +155,9 @@ export function applyCandOption(node: KnowledgeNode, index: number, optionId: st
       : optionId === "segura"
         ? c.pets === "segura"
         : c.pets === "segura" || c.pets === current.pets; // «Otra en su lugar» no empeora la seguridad
-  const pick = POOL.find((c) => !seen.has(c.name) && fits(c));
+  const pick = POOL.find(
+    (c) => !seen.has(c.name) && Math.abs(lightLevel(c) - lightLevel(current)) <= 0.5 && fits(c),
+  );
   if (!pick) return false;
   node.discarded = [...(node.discarded ?? []), current.name];
   node.candidates = list.map((c, i) => (i === index ? { ...pick } : c));
