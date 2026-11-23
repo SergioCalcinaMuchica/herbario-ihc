@@ -47,6 +47,8 @@ export interface Section {
 export interface Param {
   label: string;
   value: string;
+  /** Explicación que el usuario pidió sobre este dato. */
+  note?: string;
 }
 
 export type PlantArt = 'upright' | 'stems' | 'rosette' | 'trailing' | 'cactus' | 'fern' | 'orchid' | 'palm';

@@ -7,6 +7,7 @@
     Check,
     ChevronDown,
     CircleCheck,
+    CircleQuestionMark,
     CircleExclamationPoint,
     CirclePause,
     Download,
@@ -55,6 +56,14 @@
     togglePin,
     toast
   } from '#lib/store.svelte';
+  import {
+    applyCandOption,
+    applyParamOption,
+    CAND_OPTIONS,
+    makeShorter,
+    makeSimpler,
+    paramOptions
+  } from '#lib/engine/ajustes';
   import Contexto from './Contexto.svelte';
   import PlantArt from './PlantArt.svelte';
   import SupuestosCriticos from './SupuestosCriticos.svelte';
@@ -93,6 +102,50 @@
   let openTerm = $state<Term | null>(null);
   // Respuesta recién actualizada: el aviso verde se muestra en el lugar del aviso de desactualizada.
   let updatedId = $state('');
+
+  // Ajustes directos sobre la ficha: cada cambio se puede deshacer, y el «Deshacer»
+  // aparece junto a la parte que cambió (`changed` dice cuál).
+  let undo = $state<{ nodeId: string; before: string } | null>(null);
+  let changed = $state('');
+
+  function snapshot(n: KnowledgeNode) {
+    const { esencia, params, actions, candidates, replaced, stepsDone } = n;
+    return JSON.stringify({ esencia, params, actions, candidates, replaced, stepsDone });
+  }
+
+  /** Aplica un ajuste guardando cómo estaba antes. Si el ajuste no pudo hacerse, avisa y no cambia nada. */
+  function adjust(n: KnowledgeNode, key: string, fn: () => boolean | void, failMessage = '') {
+    const before = snapshot(n);
+    if (fn() === false) {
+      if (failMessage) toast(failMessage);
+      return;
+    }
+    undo = { nodeId: n.id, before };
+    changed = key;
+  }
+
+  function undoAdjust(n: KnowledgeNode) {
+    if (!undo || undo.nodeId !== n.id) return;
+    const prev = JSON.parse(undo.before);
+    n.esencia = prev.esencia;
+    n.params = prev.params;
+    n.actions = prev.actions;
+    n.candidates = prev.candidates;
+    n.replaced = prev.replaced;
+    n.stepsDone = prev.stepsDone ?? [];
+    undo = null;
+    changed = '';
+  }
+
+  const canUndo = (key: string) => undo !== null && undo.nodeId === node?.id && changed === key;
+
+  /** Cierra el menú desplegable desde el que se eligió una opción. */
+  function closeMenu(e: Event) {
+    (e.currentTarget as HTMLElement).closest('details')?.removeAttribute('open');
+  }
+
+  // Cambiar candidatas solo tiene sentido al escoger una planta, no al identificarla.
+  const candAdjustable = $derived(node?.species !== 'Especie por identificar');
   let lastNodeId = $state('');
 
   const doors = [
@@ -346,7 +399,14 @@
 
     {#if node.esencia}
       <section class="essence" aria-label="Respuesta">
-        <p class="eyebrow"><Sparkles size={12} /> Respuesta</p>
+        <div class="essence-head">
+          <p class="eyebrow"><Sparkles size={12} /> Respuesta</p>
+          <div class="adjust-bar" role="group" aria-label="Ajustar toda la respuesta">
+            <button class="btn tiny ghost" onclick={() => adjust(node, 'todo', () => makeShorter(node), 'La respuesta ya está lo más corta posible.')}>Más corta</button>
+            <button class="btn tiny ghost" onclick={() => adjust(node, 'todo', () => makeSimpler(node), 'No hay palabras difíciles en esta respuesta.')}>Más simple</button>
+            {#if canUndo('todo')}<button class="btn tiny ghost" onclick={() => undoAdjust(node)}><Undo2 size={12} /> Deshacer</button>{/if}
+          </div>
+        </div>
         <p class="essence-text">
           {#each segments(node) as part}
             {#if part.term}
@@ -380,7 +440,7 @@
 
     {#if done >= 3 && node.candidates?.length}
       <section class="candidates" aria-label="Plantas candidatas">
-        {#each node.candidates as c (c.id)}
+        {#each node.candidates as c, i (c.id)}
           <article class="cand">
             <div class="cand-art"><PlantArt art={c.art} color={c.color} /></div>
             <div class="cand-body">
@@ -394,11 +454,26 @@
                 <div><dt>Tamaño</dt><dd>{c.size}</dd></div>
                 <div><dt>Mascotas</dt><dd class="pet {c.pets}">{#if c.pets === 'segura'}<Check size={13} />{:else if c.pets === 'precaucion'}<CircleExclamationPoint size={13} />{:else}<TriangleExclamationPoint size={13} />{/if} {petLabel[c.pets]}</dd></div>
               </dl>
-              <button class="btn tiny" onclick={() => chooseCandidate(c)}>Elegir esta <ArrowRight size={13} /></button>
+              <div class="cand-actions">
+                <button class="btn tiny" onclick={() => chooseCandidate(c)}>Elegir esta <ArrowRight size={13} /></button>
+                {#if candAdjustable}
+                  <details class="more">
+                    <summary class="btn tiny ghost more-toggle">Cambiar <ChevronDown class="chevron" size={12} /></summary>
+                    <div class="more-menu">
+                      {#each CAND_OPTIONS as o (o.id)}
+                        <button class="btn tiny ghost" onclick={(e) => { closeMenu(e); adjust(node, 'plantas', () => applyCandOption(node, i, o.id), 'No encontré otra planta que cumpla eso.'); }}>{o.label}</button>
+                      {/each}
+                    </div>
+                  </details>
+                {/if}
+              </div>
             </div>
           </article>
         {/each}
       </section>
+      {#if canUndo('plantas')}
+        <p class="adjust-done"><CircleCheck size={14} /> Cambiaste las plantas candidatas. <button class="link" onclick={() => undoAdjust(node)}>Deshacer</button></p>
+      {/if}
       {#if node.brief?.pets === 'mascotas' || node.candidates.some((c) => c.pets !== 'segura')}
         <p class="safety-note" role="note">
           <TriangleExclamationPoint size={15} />
@@ -428,9 +503,29 @@
       <section class="params-block" aria-labelledby="params-title">
         <h2 id="params-title">Datos de cuidado</h2>
         <div class="params">
-          {#each node.params as p (p.label)}
+          {#each node.params as p, i (p.label)}
             {@const ParamIcon = paramIcon(p.label)}
-            <div class="param"><span class="k"><ParamIcon size={12} /> {p.label}</span><strong class="v">{p.value}</strong></div>
+            {@const options = paramOptions(p)}
+            <div class="param" class:has-note={p.note} class:changed={canUndo(`dato:${p.label}`)}>
+              <span class="k"><ParamIcon size={12} /> {p.label}</span>
+              <strong class="v">{p.value}</strong>
+              {#if options.length}
+                <details class="more param-more">
+                  <summary class="btn tiny ghost more-toggle"><CircleQuestionMark size={12} /> Preguntar <ChevronDown class="chevron" size={12} /></summary>
+                  <div class="more-menu">
+                    {#each options as o (o.id)}
+                      <button class="btn tiny ghost" onclick={(e) => { closeMenu(e); adjust(node, `dato:${p.label}`, () => applyParamOption(node, i, o.id)); }}>{o.label}</button>
+                    {/each}
+                  </div>
+                </details>
+              {/if}
+              {#if p.note}
+                <p class="param-note">
+                  {p.note}
+                  {#if canUndo(`dato:${p.label}`)}<button class="link" onclick={() => undoAdjust(node)}>Deshacer</button>{/if}
+                </p>
+              {/if}
+            </div>
           {/each}
         </div>
       </section>

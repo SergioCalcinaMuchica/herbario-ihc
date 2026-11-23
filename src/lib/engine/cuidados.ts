@@ -18,7 +18,7 @@ const CARE: Record<string, CareProfile> = {
   "Epipremnum aureum": {
     title: "Cuidados del potos",
     esencia:
-      "El potos es de las plantas más fáciles. Necesita luz sin sol directo y riego cuando la tierra se seque arriba.",
+      "El potos necesita luz sin sol directo y riego cuando la tierra se seque arriba. Es de las plantas más fáciles.",
     luz: "Indirecta, tolera poca",
     riego: "Cada 7 a 10 días",
     tierra: "Suelta",
