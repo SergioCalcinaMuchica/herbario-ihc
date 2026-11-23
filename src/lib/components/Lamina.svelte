@@ -300,6 +300,10 @@
   function onWindowClick(e: MouseEvent) {
     const target = e.target as HTMLElement;
     if (!target.closest('.term-wrap')) openTerm = null;
+    // Solo un menú abierto a la vez: al tocar fuera de un menú, o al abrir otro, se cierra el anterior.
+    document.querySelectorAll('details.more[open]').forEach((d) => {
+      if (!d.contains(target)) d.removeAttribute('open');
+    });
   }
 </script>
 
